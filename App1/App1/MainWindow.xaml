@@ -8,6 +8,6 @@
     mc:Ignorable="d">
 
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="myButton" Click="myButton_Click">Fraulein</Button>
+        <Button x:Name="myButton" Click="myButton_Click">Fraulein is here</Button>
     </StackPanel>
 </Window>
