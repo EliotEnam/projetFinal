@@ -28,9 +28,26 @@ namespace App1
             this.InitializeComponent();
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
+  
+
+        private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            myButton.Content = "Clicked";
+            var item = (NavigationViewItem)args.SelectedItem;
+
+            switch (item.Name)
+            {
+                case "Liste":
+                    mainFrame.Navigate(typeof());
+                    break;
+                case "Stat":
+                    mainFrame.Navigate(typeof(Statistiques));
+                    break;
+                case "Recherche":
+                    mainFrame.Navigate(typeof(Recherche));
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
