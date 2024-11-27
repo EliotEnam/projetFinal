@@ -30,5 +30,18 @@ namespace App1
 
             lvListe.ItemsSource = SingletonListe.getInstance().Liste;
         }
+
+        private async void ajoutActivite_Click(object sender, RoutedEventArgs e)
+        {
+            AjoutAherentDialog dialog = new AjoutAherentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = $"Ajout d'adhérent";
+            dialog.PrimaryButtonText = "Ajouter";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+            SingletonListe.getInstance().afficherActivites();
+        }
     }
 }

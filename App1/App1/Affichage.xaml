@@ -7,13 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    
 
-
-
-        
-        
-
-        <ScrollViewer Background="#212a31" >    
+    <ScrollViewer Background="#212a31" >    
             <Grid>
 
             <Grid.RowDefinitions>
@@ -63,6 +60,7 @@
             <StackPanel Grid.Row="0" Grid.RowSpan="3" Grid.Column="1">
                 <TextBlock Text="Que voulez vous faire ?" FontSize="25" HorizontalAlignment="Center" Margin="0,25" FontWeight="ExtraBlack" Foreground="#d3d9d4"/>
             </StackPanel>
+            <Button x:Name="ajoutActivite" Content="Ajpouter un adhérent" Click="ajoutActivite_Click" Grid.Row="1" HorizontalAlignment="Center" />
 
         </Grid>
     </ScrollViewer>

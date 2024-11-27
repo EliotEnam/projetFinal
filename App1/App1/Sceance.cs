@@ -8,5 +8,25 @@ namespace App1
 {
     internal class Sceance
     {
+        int idSce, idAct, nbplace;
+        double note;
+        string date, heure;
+
+        public Sceance(int idSce, int idAct, int nbplace, double note, string date, string heure)
+        {
+            this.idSce = idSce;
+            this.idAct = idAct;
+            this.nbplace = nbplace;
+            this.note = note;
+            this.date = date;
+            this.heure = heure;
+        }
+
+        public int IdSce { get => idSce; set => idSce = value; }    
+        public int IdAct { get => idAct; set => idAct = value; } 
+        public double Note { get => note; set => note = value; }
+        public string Date { get => date; set => date = value; }
+        public int Nbplace { get => nbplace; set => nbplace = value; } 
+        public string Heure { get => heure; set => heure = value; }
     }
 }

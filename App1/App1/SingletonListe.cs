@@ -57,10 +57,11 @@ namespace App1
             con.Close();
         }
 
-        public void afficherAdherents()
+        public ObservableCollection<Adherent> afficherAdherents()
         {
 
             liste.Clear();
+            ObservableCollection<Adherent> liste2 = new ObservableCollection<Adherent>();
             MySqlCommand commande = new MySqlCommand();
             commande.Connection = con;
             commande.CommandText = "Select * from adherent";
@@ -70,27 +71,30 @@ namespace App1
 
             while (r.Read())
             {
-                int idActivite = Convert.ToInt32(r[0].ToString());
+                string id = r[0].ToString();
                 string nom = r.GetString(1);
-                double org = Convert.ToDouble(r[2].ToString());
-                double vent = Convert.ToDouble(r[3].ToString());
-                int cat = Convert.ToInt32(r[4].ToString());
+                string prenom = r[2].ToString();
+                string adr = r[3].ToString();
+                string date = r[4].ToString();
+                int age = Convert.ToInt32(r[5].ToString());
 
-                Activite activite = new Activite(idActivite, nom, cat, org, vent);
+                Adherent adherent = new Adherent(id,nom,prenom,adr,date,age);
 
-                liste.Add(activite);
+                liste2.Add(adherent);
 
             }
 
             r.Close();
             con.Close();
+            return liste2;
         }
 
-        public void afficherSceances()
+        public ObservableCollection<Sceance> afficherSceances()
         {
 
             liste.Clear();
             MySqlCommand commande = new MySqlCommand();
+            ObservableCollection<Sceance> liste2 = new ObservableCollection<Sceance>();
             commande.Connection = con;
             commande.CommandText = "Select * from sceance";
             con.Open();
@@ -99,20 +103,22 @@ namespace App1
 
             while (r.Read())
             {
-                int idActivite = Convert.ToInt32(r[0].ToString());
-                string nom = r.GetString(1);
-                double org = Convert.ToDouble(r[2].ToString());
-                double vent = Convert.ToDouble(r[3].ToString());
-                int cat = Convert.ToInt32(r[4].ToString());
+                int idSce = Convert.ToInt32(r[0].ToString());
+                string date = r.GetString(1);
+                string heure = r[2].ToString();
+                int nbPlace = Convert.ToInt32(r[3].ToString());
+                double note = Convert.ToDouble(r[4].ToString());
+                int idAct = Convert.ToInt32(r[5].ToString());
 
-                Activite activite = new Activite(idActivite, nom, cat, org, vent);
+                Sceance sceance = new Sceance(idSce, idAct, nbPlace, note, date,heure);
 
-                liste.Add(activite);
+                liste2.Add(sceance);
 
             }
 
             r.Close();
             con.Close();
+            return liste2;
         }
     }
 }
