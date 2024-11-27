@@ -21,14 +21,11 @@ namespace App1
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Affichage : Page
+    public sealed partial class AjoutAherentDialog : Page
     {
-        public Affichage()
+        public AjoutAherentDialog()
         {
             this.InitializeComponent();
-            SingletonListe.getInstance().afficherActivites();
-
-            lvListe.ItemsSource = SingletonListe.getInstance().Liste;
         }
     }
 }

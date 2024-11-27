@@ -26,6 +26,7 @@ namespace App1
         public MainWindow()
         {
             this.InitializeComponent();
+            mainFrame.Navigate(typeof(Affichage));
         }
 
   
@@ -37,13 +38,13 @@ namespace App1
             switch (item.Name)
             {
                 case "Liste":
-                    mainFrame.Navigate(typeof());
+                    mainFrame.Navigate(typeof(Affichage));
                     break;
                 case "Stat":
                     mainFrame.Navigate(typeof(Statistiques));
                     break;
                 case "Recherche":
-                    mainFrame.Navigate(typeof(Recherche));
+                    mainFrame.Navigate(typeof(Statistiques));
                     break;
                 default:
                     break;
