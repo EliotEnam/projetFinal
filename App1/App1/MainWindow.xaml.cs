@@ -37,8 +37,14 @@ namespace App1
 
             switch (item.Name)
             {
-                case "Liste":
+                case "Activite":
                     mainFrame.Navigate(typeof(Affichage));
+                    break;
+                case "Adherent":
+                    mainFrame.Navigate(typeof(BlankPage1));
+                    break;
+                case "Sceance":
+                    mainFrame.Navigate(typeof(AffichageSceances));
                     break;
                 case "Stat":
                     mainFrame.Navigate(typeof(Statistiques));

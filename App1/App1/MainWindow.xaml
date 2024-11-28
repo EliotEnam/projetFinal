@@ -11,7 +11,9 @@
         <NavigationView PaneTitle="Menu" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" SelectionChanged="NavigationView_SelectionChanged" Foreground="White" >
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader Content="Pages" Foreground="White"/>
-                <NavigationViewItem Content="Liste des Produits" x:Name="Liste" Icon="List" Foreground="White" />
+                <NavigationViewItem Content="Activitées" x:Name="Activite" Icon="List" Foreground="White" />
+                <NavigationViewItem Content="Adhérents" x:Name="Adherent" Icon="People" Foreground="White"/>
+                <NavigationViewItem Content="Sceance" x:Name="Sceance" Icon="Caption" Foreground="White"/>
                 <NavigationViewItem Content="Statistiques" x:Name="Stat" Icon="Shop" Foreground="White"/>
                 <NavigationViewItem Content="Recherche" x:Name="Recherche" Icon="Zoom" Foreground="White"/>
             </NavigationView.MenuItems>
