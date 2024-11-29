@@ -27,7 +27,6 @@ namespace App1
         {
             this.InitializeComponent();
             SingletonListe.getInstance().afficherActivites();
-
             lvListe.ItemsSource = SingletonListe.getInstance().Liste;
         }
 

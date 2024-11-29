@@ -26,7 +26,7 @@ namespace App1
         public MainWindow()
         {
             this.InitializeComponent();
-            mainFrame.Navigate(typeof(Affichage));
+            mainFrame.Navigate(typeof(AffichageSceances));
         }
 
   
