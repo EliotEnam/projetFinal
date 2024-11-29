@@ -33,9 +33,8 @@ namespace App1
 
         private async void ajoutActivite_Click(object sender, RoutedEventArgs e)
         {
-            AjoutAherentDialog dialog = new AjoutAherentDialog();
+            AjoutActiviteDialog dialog = new AjoutActiviteDialog();
             dialog.XamlRoot = this.XamlRoot;
-            dialog.Title = $"Ajout d'adhérent";
             dialog.PrimaryButtonText = "Ajouter";
             dialog.CloseButtonText = "Annuler";
             dialog.DefaultButton = ContentDialogButton.Close;

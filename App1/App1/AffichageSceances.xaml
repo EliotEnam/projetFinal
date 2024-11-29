@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 
-    <StackPanel Orientation="Vertical" 
+    <ScrollViewer> <StackPanel Orientation="Vertical" 
                     Margin="30">
         <TextBlock Text="Liste des adhérents" Margin="25" FontWeight="ExtraBlack" HorizontalAlignment="Center" Foreground="Black" FontSize="25"/>
         <ListView x:Name="lv_liste" BorderBrush="Gray" BorderThickness="1">
@@ -60,5 +60,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackPanel>
+    </StackPanel></ScrollViewer>
+   
 </Page>

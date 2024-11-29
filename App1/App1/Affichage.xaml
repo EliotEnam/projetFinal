@@ -14,8 +14,8 @@
             <Grid>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="500" />
-                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
@@ -26,8 +26,8 @@
 
 
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
-                <TextBlock Text="Liste des activités" HorizontalAlignment="Left" FontSize="25" Margin="0,25" FontWeight="Bold" Foreground="#d3d9d4"/>
-                <TextBox Header="Rechercher une activité" HorizontalAlignment="Right"/>
+                <TextBlock Text="Liste des activités" HorizontalAlignment="Center" FontSize="25" Margin="0,25" FontWeight="Bold" Foreground="#d3d9d4"/>
+                <Button x:Name="ajoutActivite" Content="Ajpouter un adhérent" Click="ajoutActivite_Click" Grid.Row="1" HorizontalAlignment="Right" Margin="25,0"/>
                 <ScrollViewer><GridView x:Name="lvListe" Grid.Row="1" Grid.ColumnSpan="5">
                     <GridView.ItemTemplate >
                         <DataTemplate x:DataType="local:Activite">
@@ -43,7 +43,7 @@
                                     <TextBlock Text="{x:Bind Nom, Mode=OneWay}" FontSize="20" FontWeight="Light" HorizontalAlignment="Center"  Foreground="#124e66"/>
                                     <TextBlock Text="{x:Bind CoutOrgCli, Mode=OneWay}" FontSize="20" FontWeight="Light" Foreground="Black" HorizontalAlignment="Left"  x:Name="tbl_prix"/>
                                     <TextBlock Text="{x:Bind CoutVentCli, Mode=OneWay}" FontSize="20" FontWeight="Light" Foreground="Black" HorizontalAlignment="Right"  FontStyle="Oblique" />
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                     </StackPanel>
 
                                 </StackPanel>
@@ -57,10 +57,7 @@
                 
             </StackPanel>
 
-            <StackPanel Grid.Row="0" Grid.RowSpan="3" Grid.Column="1">
-                <TextBlock Text="Que voulez vous faire ?" FontSize="25" HorizontalAlignment="Center" Margin="0,25" FontWeight="ExtraBlack" Foreground="#d3d9d4"/>
-            </StackPanel>
-            <Button x:Name="ajoutActivite" Content="Ajpouter un adhérent" Click="ajoutActivite_Click" Grid.Row="1" HorizontalAlignment="Center" />
+ 
 
         </Grid>
     </ScrollViewer>

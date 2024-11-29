@@ -48,13 +48,12 @@ namespace App1
         {
             AjoutAherentDialog dialog = new AjoutAherentDialog();
             dialog.XamlRoot = this.XamlRoot;
-            dialog.Title = $"Ajout d'adhérent";
             dialog.PrimaryButtonText = "Ajouter";
             dialog.CloseButtonText = "Annuler";
             dialog.DefaultButton = ContentDialogButton.Close;
 
             ContentDialogResult resultat = await dialog.ShowAsync();
-            SingletonListe.getInstance().afficherActivites();
+            SingletonListe.getInstance().afficherAdherents();
         }
     }
 }

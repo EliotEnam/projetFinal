@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.UI.Xaml.Controls;
 
 namespace App1
 {
@@ -121,6 +122,52 @@ namespace App1
             return liste2;
         }
 
+        public void ListeCategorie(ComboBox cbx)
+        {
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select nomCategorie,idCategorie from categorie";
+            con.Open();
+            commande.Prepare();
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+                string nom = r[0].ToString();
+                string ID = r[1].ToString();
+                cbx.Items.Add(nom);
+                cbx.Name = ID;
+
+            }
+
+            r.Close();
+            con.Close();
+        }
+
+
+        public int getIdCategorie(string lnom)
+        {
+            string nom = lnom;
+            int id = 0;
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select f_idCat(@lnomCategorie)";
+            commande.Parameters.AddWithValue("@lnomCategorie", nom);
+            con.Open();
+            commande.Prepare();
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+                id = Convert.ToInt32(r[0].ToString());
+              
+            }
+
+            r.Close();
+            con.Close();
+            return id;
+        }
         public void ajoutAdherent(string lnom,string lprenom, string ladresse, string ldate)
         {
 
@@ -134,10 +181,76 @@ namespace App1
                 MySqlCommand commande = new MySqlCommand("ajout_adherent");
                 commande.Connection = con;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
-                commande.Parameters.AddWithValue("@nom", nom);
-                commande.Parameters.AddWithValue("@prenom", prenom);
-                commande.Parameters.AddWithValue("@adresse", adresse);
-                commande.Parameters.AddWithValue("@dateNaiss", dateNaiss);
+                commande.Parameters.AddWithValue("@lnom", nom);
+                commande.Parameters.AddWithValue("@lprenom", prenom);
+                commande.Parameters.AddWithValue("@laddresse", adresse);
+                commande.Parameters.AddWithValue("@ldatenaiss", dateNaiss);
+
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+        }
+
+        public void ajoutActivite(string lnom, double lco, double lcv, int lcat,int lnb, string ldate)
+        {
+
+            string nom = lnom;
+            double co = lco;
+            double cv = lcv;
+            int cat = lcat;
+            int nb = lnb;
+            string dateDebut = ldate;
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("ajout_activite");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.AddWithValue("@lnom", nom);
+                commande.Parameters.AddWithValue("@lcouOrg", co);
+                commande.Parameters.AddWithValue("@lcoutVente", cv);
+                commande.Parameters.AddWithValue("@lidCategorie", cat);
+                commande.Parameters.AddWithValue("@nbSceance", nb);
+                commande.Parameters.AddWithValue("@dateDebut", dateDebut);
+
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+        }
+
+        public void supprimer(string ltable, string lid, string lnomId)
+        {
+
+            string table = ltable;
+            string id = lid;
+            string nomId = lnomId;
+           
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("supprimer");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.AddWithValue("@ltable", table);
+                commande.Parameters.AddWithValue("@id", id);
+                commande.Parameters.AddWithValue("@lidName", nomId);
 
                 con.Open();
                 commande.Prepare();
