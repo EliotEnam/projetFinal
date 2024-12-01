@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentDialog
+    x:Class="App1.ModActivite"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    CloseButtonClick="ContentDialog_CloseButtonClick"
+    Closing="ContentDialog_Closing"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock x:Name="tbl_texte" Text="Ajout d'une activité" FontSize="30" HorizontalAlignment="Center" FontWeight="Bold" Grid.Row="0" Grid.ColumnSpan="2"/>
+        <StackPanel  Orientation="Vertical" Padding="10" Grid.Row="1" Grid.Column="0">
+            <TextBox x:Name="tbx_nom" Width="200" Header="Nom"/>
+            <TextBlock x:Name="erreur_nom" Foreground="Red"/>
+        </StackPanel>
+        <StackPanel  Orientation="Vertical" Padding="10" Grid.Row="1" Grid.Column="1">
+            <TextBox x:Name="tbx_co" Width="200" Header="Coût d'organisation par client"/>
+            <TextBlock x:Name="erreur_co" Foreground="Red"/>
+        </StackPanel>
+        <StackPanel  Orientation="Vertical" Padding="10" Grid.Row="2" Grid.Column="0"  HorizontalAlignment="Center">
+            <TextBox x:Name="tbx_cv" Width="200" Header="Coût de vente par client" HorizontalAlignment="Center" />
+            <TextBlock x:Name="erreur_cv" Foreground="Red"/>
+        </StackPanel>
+        <StackPanel  Orientation="Vertical" Padding="10" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">
+            <ComboBox Header="Catégorie" x:Name="cbx_categorie" SelectedIndex="0"/>
+            <TextBlock x:Name="erreur_cat" Foreground="Red"/>
+        </StackPanel>
+        <StackPanel  Orientation="Vertical" Padding="10" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <TextBox Header="Nombre se scéance" x:Name="tbx_nb_sce" />
+            <TextBlock x:Name="erreur_nbsce" Foreground="Red"/>
+        </StackPanel>
+        <StackPanel  Orientation="Vertical" Padding="10" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <DatePicker x:Name="dateDebut" Header="Date de début de scéances"/>
+            <TextBlock x:Name="erreur_dateDebut" Foreground="Red"/>
+        </StackPanel>
+
+
+    </Grid>
+</ContentDialog>

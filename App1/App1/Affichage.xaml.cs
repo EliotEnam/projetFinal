@@ -41,5 +41,33 @@ namespace App1
             ContentDialogResult resultat = await dialog.ShowAsync();
             SingletonListe.getInstance().afficherActivites();
         }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            Activite activite = btn.DataContext as Activite;
+            lvListe.SelectedItem = activite;
+            int index = SingletonListe.getInstance().Liste.IndexOf(activite);
+            string[] table = { activite.Nom, activite.IdActivite.ToString(), activite.IdCategorie.ToString(), activite.CoutOrgCli.ToString(), activite.CoutVentCli.ToString(), index.ToString() };
+
+            ModActivite dialog = new ModActivite(table);
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.PrimaryButtonText = "Modifier";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+            SingletonListe.getInstance().afficherActivites();
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            Activite activite = btn.DataContext as Activite;
+            lvListe.SelectedItem = activite;
+            SingletonListe.getInstance().supprimer(activite.IdActivite.ToString(),"supprimerActivite");
+            SingletonListe.getInstance().afficherActivites();
+        }
     }
 }

@@ -41,7 +41,11 @@ namespace App1
 
         private void btn_supprimer_Click(object sender, RoutedEventArgs e)
         {
-
+            Button btn = sender as Button;
+            Sceance sceance = btn.DataContext as Sceance;
+            lv_liste.SelectedItem = sceance;
+            SingletonListe.getInstance().supprimer(sceance.IdSce.ToString(), "supprimerSceance");
+            lv_liste.ItemsSource = (SingletonListe.getInstance().afficherSceances());
         }
     }
 }

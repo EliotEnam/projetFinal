@@ -41,7 +41,11 @@ namespace App1
 
         private void btn_supprimer_Click(object sender, RoutedEventArgs e)
         {
-
+            Button btn = sender as Button;
+            Adherent adherent = btn.DataContext as Adherent;
+            lv_liste.SelectedItem = adherent;
+            SingletonListe.getInstance().supprimer(adherent.Id.ToString(), "supprimerAdherent");
+            lv_liste.ItemsSource = (SingletonListe.getInstance().afficherAdherents());
         }
 
         private async void btn_ajout_adherent_Click(object sender, RoutedEventArgs e)
@@ -53,7 +57,7 @@ namespace App1
             dialog.DefaultButton = ContentDialogButton.Close;
 
             ContentDialogResult resultat = await dialog.ShowAsync();
-            SingletonListe.getInstance().afficherAdherents();
+            lv_liste.ItemsSource = (SingletonListe.getInstance().afficherAdherents());
         }
     }
 }

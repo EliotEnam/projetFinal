@@ -236,21 +236,19 @@ namespace App1
 
         }
 
-        public void supprimer(string ltable, string lid, string lnomId)
+        public void supprimer( string lid, string nomProcedure)
         {
 
-            string table = ltable;
             string id = lid;
-            string nomId = lnomId;
+            string nom = nomProcedure;
+   
            
             try
             {
-                MySqlCommand commande = new MySqlCommand("supprimer");
+                MySqlCommand commande = new MySqlCommand(nom);
                 commande.Connection = con;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
-                commande.Parameters.AddWithValue("@ltable", table);
                 commande.Parameters.AddWithValue("@id", id);
-                commande.Parameters.AddWithValue("@lidName", nomId);
 
                 con.Open();
                 commande.Prepare();
