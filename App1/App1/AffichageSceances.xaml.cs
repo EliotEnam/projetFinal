@@ -34,9 +34,21 @@ namespace App1
 
         }
 
-        private void btn_modifier_Click(object sender, RoutedEventArgs e)
+        private async void btn_modifier_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = sender as Button;
+            Sceance sceance = btn.DataContext as Sceance;
+            lv_liste.SelectedItem = sceance;
+            string[] table = { sceance.IdSce.ToString(), sceance.Date, sceance.Heure, sceance.Nbplace.ToString()};
 
+            ModSceance dialog = new ModSceance(table);
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.PrimaryButtonText = "Modifier";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+            lv_liste.ItemsSource = SingletonListe.getInstance().afficherSceances();
         }
 
         private void btn_supprimer_Click(object sender, RoutedEventArgs e)

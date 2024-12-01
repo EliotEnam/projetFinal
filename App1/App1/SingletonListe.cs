@@ -168,6 +168,28 @@ namespace App1
             con.Close();
             return id;
         }
+        public string getNomCategorie(int lid)
+        {
+            int id = lid;
+            string nom = "";
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select f_nomcat(@lid)";
+            commande.Parameters.AddWithValue("@lid", id);
+            con.Open();
+            commande.Prepare();
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+                nom = r[0].ToString();
+
+            }
+
+            r.Close();
+            con.Close();
+            return nom;
+        }
         public void ajoutAdherent(string lnom,string lprenom, string ladresse, string ldate)
         {
 
@@ -249,6 +271,111 @@ namespace App1
                 commande.Connection = con;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
                 commande.Parameters.AddWithValue("@id", id);
+
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+        }
+
+        public void modActivite(int idA, string lnom,double co,double cv, int idca)
+        {
+
+            int idAc = idA;
+            string nom = lnom;
+            double coAc = co;
+            double cvAc = cv;
+            int idcaAc = idca;
+
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("ModActivite");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.AddWithValue("@lidActivite", idAc);
+                commande.Parameters.AddWithValue("@lnom", nom);
+                commande.Parameters.AddWithValue("@lcoutOrgCli", coAc);
+                commande.Parameters.AddWithValue("@lcoutVentCli", cvAc);
+                commande.Parameters.AddWithValue("@lidCategorie", idcaAc);
+
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+        }
+
+        public void modAdherent(string lid, string lnom, string lprenom, string ladresse, string ldateNaiss)
+        {
+
+            string id = lid;
+            string nom = lnom;
+            string prenom = lprenom;
+            string adresse = ladresse;
+            string date = ldateNaiss;
+
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("ModAdherent");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.AddWithValue("@lidAdherent", id);
+                commande.Parameters.AddWithValue("@lnom", nom);
+                commande.Parameters.AddWithValue("@lprenom", prenom);
+                commande.Parameters.AddWithValue("@ladresse", adresse);
+                commande.Parameters.AddWithValue("@ldateNaiss", date);
+
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+        }
+
+        public void modSceance(int lid, string ldate, string lheure, int lnb)
+        {
+
+            int id = lid;
+            string date = ldate;
+            string heure = lheure;
+            int nb = lnb;
+    
+
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("ModSceance");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.AddWithValue("@lidSceance", id);
+                commande.Parameters.AddWithValue("@ldate", date);
+                commande.Parameters.AddWithValue("@lheure", heure);
+                commande.Parameters.AddWithValue("@lnbPlaceDispo", nb);
+   
 
                 con.Open();
                 commande.Prepare();

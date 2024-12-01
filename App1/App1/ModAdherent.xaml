@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Page
+<ContentDialog
     x:Class="App1.ModAdherent"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -7,9 +7,42 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    CloseButtonClick="ContentDialog_CloseButtonClick"
+    Closing="ContentDialog_Closing"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock x:Name="tbl_texte" Text="Modification de l'adhérent" FontSize="30" HorizontalAlignment="Center" FontWeight="Bold" Grid.Row="0" Grid.ColumnSpan="2"/>
+        <StackPanel  Orientation="Vertical" Padding="10" Grid.Row="1" Grid.Column="0">
+            <TextBox x:Name="tbx_nom" Width="200" Header="Nom"/>
+            <TextBlock x:Name="erreur_nom" Foreground="Red"/>
+        </StackPanel>
+        <StackPanel  Orientation="Vertical" Padding="10" Grid.Row="1" Grid.Column="1">
+            <TextBox x:Name="tbx_prenom" Width="200" Header="Prenom"/>
+            <TextBlock x:Name="erreur_prenom" Foreground="Red"/>
+        </StackPanel>
+        <StackPanel  Orientation="Vertical" Padding="10" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <TextBox x:Name="tbx_adresse" Width="200" Header="Adresse" HorizontalAlignment="Center" />
+            <TextBlock x:Name="erreur_adresse" Foreground="Red"/>
+        </StackPanel>
+        <StackPanel  Orientation="Vertical" Padding="10" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <DatePicker x:Name="dateNaiss" Header="Date de naissance"/>
+            <TextBlock x:Name="erreur_dateNais" Foreground="Red"/>
+        </StackPanel>
+
     </Grid>
-</Page>
+</ContentDialog>

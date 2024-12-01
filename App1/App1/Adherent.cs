@@ -17,7 +17,7 @@ namespace App1
             this.nom = nom;
             this.prenom = prenom;
             this.adresse = adresse;
-            this.dateNaiss = dateNaiss;
+            this.dateNaiss = dateNaiss.Substring(0,11);
             this.age = age;
         }
 

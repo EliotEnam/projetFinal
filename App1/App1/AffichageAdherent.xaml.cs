@@ -34,9 +34,21 @@ namespace App1
 
         }
 
-        private void btn_modifier_Click(object sender, RoutedEventArgs e)
+        private async void btn_modifier_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = sender as Button;
+            Adherent adherent = btn.DataContext as Adherent;
+            lv_liste.SelectedItem = adherent;
+            string[] table = {adherent.Id, adherent.Nom, adherent.Prenom, adherent.Adresse, adherent.DateNaiss};
 
+            ModAdherent dialog = new ModAdherent(table);
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.PrimaryButtonText = "Modifier";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+            lv_liste.ItemsSource = SingletonListe.getInstance().afficherAdherents();
         }
 
         private void btn_supprimer_Click(object sender, RoutedEventArgs e)

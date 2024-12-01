@@ -18,7 +18,7 @@ namespace App1
             this.idAct = idAct;
             this.nbplace = nbplace;
             this.note = note;
-            this.date = date;
+            this.date = date.Substring(0,11);
             this.heure = heure;
         }
 

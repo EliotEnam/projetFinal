@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Page
+<ContentDialog
     x:Class="App1.ModSceance"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -7,9 +7,40 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    CloseButtonClick="ContentDialog_CloseButtonClick"
+    Closing="ContentDialog_Closing"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock x:Name="tbl_texte" Text="Scéance" FontSize="30" HorizontalAlignment="Center" FontWeight="Bold" Grid.Row="0" Grid.ColumnSpan="2"/>
+        <StackPanel  Orientation="Vertical" Padding="10" Grid.Row="2" Grid.Column="0">
+            <TextBox x:Name="tbx_nb" Width="200" Header="Nb place dispo"/>
+            <TextBlock x:Name="erreur_nb" Foreground="Red"/>
+        </StackPanel>
+        <StackPanel  Orientation="Vertical" Padding="10" Grid.Row="2" Grid.Column="1">
+            <TimePicker x:Name="heureSceance" Header="Heure de la scéance"/>
+            <TextBlock x:Name="erreur_heure" Foreground="Red"/>
+        </StackPanel>
+        <StackPanel  Orientation="Vertical" Padding="10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <DatePicker x:Name="dateSceance" Header="Date de la scéance"/>
+            <TextBlock x:Name="erreur_dateSceance" Foreground="Red"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="3" Text="" FontSize="15" FontStyle="Italic" x:Name="tbl_sous" Grid.ColumnSpan="2"/>
+
     </Grid>
-</Page>
+</ContentDialog>

@@ -45,14 +45,6 @@
             <ComboBox Header="Catégorie" x:Name="cbx_categorie" SelectedIndex="0"/>
             <TextBlock x:Name="erreur_cat" Foreground="Red"/>
         </StackPanel>
-        <StackPanel  Orientation="Vertical" Padding="10" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-            <TextBox Header="Nombre se scéance" x:Name="tbx_nb_sce" />
-            <TextBlock x:Name="erreur_nbsce" Foreground="Red"/>
-        </StackPanel>
-        <StackPanel  Orientation="Vertical" Padding="10" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-            <DatePicker x:Name="dateDebut" Header="Date de début de scéances"/>
-            <TextBlock x:Name="erreur_dateDebut" Foreground="Red"/>
-        </StackPanel>
 
 
     </Grid>

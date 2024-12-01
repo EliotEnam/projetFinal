@@ -23,13 +23,17 @@ namespace App1
     /// </summary>
     public sealed partial class ModActivite : ContentDialog
     {
-        public ModActivite(Array activite)
+        int _id = 0;
+        public ModActivite(string [] activite )
         {
             this.InitializeComponent();
-            tbx
-            dateDebut.MaxYear = DateTime.Now;
+            tbx_nom.Text = activite[0];
+            _id = Convert.ToInt32(activite[1]);
+            tbx_co.Text = activite[3];
+            tbx_cv.Text = activite[4];
             SingletonListe.getInstance().ListeCategorie(cbx_categorie);
-            dateDebut.MinYear = new DateTimeOffset(new DateTime(1950, 1, 1));
+            cbx_categorie.SelectedValue = activite[5];
+
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -41,9 +45,8 @@ namespace App1
                 double co = Convert.ToDouble(tbx_co.Text);
                 double cv = Convert.ToDouble(tbx_cv.Text);
                 int cat = SingletonListe.getInstance().getIdCategorie(cbx_categorie.SelectedValue.ToString());
-                int nb = Convert.ToInt32(tbx_nb_sce.Text);
-                string dateDebut1 = dateDebut.Date.ToString("yyyy-MM-dd");
-                SingletonListe.getInstance().ajoutActivite(nom, co, cv, cat, nb, dateDebut1);
+
+                SingletonListe.getInstance().modActivite(_id, nom, co, cv, cat);
 
             }
         }
@@ -56,7 +59,7 @@ namespace App1
             int nb;
             bool co = Double.TryParse(tbx_co.Text, out coutO);
             bool cv = Double.TryParse(tbx_cv.Text, out coutV);
-            bool nbPLace = Int32.TryParse(tbx_nb_sce.Text, out nb);
+
             resetErreurs();
 
 
@@ -95,34 +98,7 @@ namespace App1
                 valide = false;
 
             }
-
-            if (nbPLace == true)
-            {
-                if (tbx_nb_sce.Text.Trim() == String.Empty || Convert.ToInt32(tbx_nb_sce.Text.ToString()) < 1 || Convert.ToInt32(tbx_nb_sce.Text.ToString()) > 30)
-                {
-                    valide = false;
-                    erreur_nbsce.Text = "Le nombre de scéance doit être un chiffre ou nombre entre 1 et 30";
-                }
-
-            }
-            else
-            {
-                erreur_nbsce.Text = "Le nombre de scéance doit être un chiffre ou nombre entre 1 et 30";
-                valide = false;
-
-            }
-
-
-            if (cbx_categorie.SelectedIndex == null)
-            {
-                valide = false;
-                erreur_cat.Text = "L'adresse ne doit pas être vide";
-            }
-            if (dateDebut == null)
-            {
-                valide = false;
-                erreur_dateDebut.Text = "Veullez entrer la date de début des scéances";
-            }
+ 
             return valide;
         }
 
@@ -131,9 +107,9 @@ namespace App1
             tbx_nom.Text = String.Empty;
             tbx_co.Text = String.Empty;
             tbx_cv.Text = String.Empty;
-            tbx_nb_sce.Text = String.Empty;
+
             cbx_categorie.Text = String.Empty;
-            dateDebut = null;
+
         }
 
         private void resetErreurs()
@@ -141,9 +117,8 @@ namespace App1
             erreur_nom.Text = String.Empty;
             erreur_co.Text = String.Empty;
             erreur_cv.Text = String.Empty;
-            erreur_nbsce.Text = String.Empty;
             erreur_cat.Text = String.Empty;
-            erreur_dateDebut.Text = String.Empty;
+
         }
 
 

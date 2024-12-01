@@ -47,8 +47,8 @@ namespace App1
             Button btn = sender as Button;
             Activite activite = btn.DataContext as Activite;
             lvListe.SelectedItem = activite;
-            int index = SingletonListe.getInstance().Liste.IndexOf(activite);
-            string[] table = { activite.Nom, activite.IdActivite.ToString(), activite.IdCategorie.ToString(), activite.CoutOrgCli.ToString(), activite.CoutVentCli.ToString(), index.ToString() };
+            string nomCat = SingletonListe.getInstance().getNomCategorie(activite.IdCategorie);
+            string[] table = { activite.Nom, activite.IdActivite.ToString(), activite.IdCategorie.ToString(), activite.CoutOrgCli.ToString(), activite.CoutVentCli.ToString(), nomCat };
 
             ModActivite dialog = new ModActivite(table);
             dialog.XamlRoot = this.XamlRoot;
