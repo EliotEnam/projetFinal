@@ -15,7 +15,7 @@
                 <NavigationViewItem Content="Adhérents" x:Name="Adherent" Icon="People" Foreground="White"/>
                 <NavigationViewItem Content="Sceance" x:Name="Sceance" Icon="Caption" Foreground="White"/>
                 <NavigationViewItem Content="Statistiques" x:Name="Stat" Icon="Shop" Foreground="White"/>
-                <NavigationViewItem Content="Recherche" x:Name="Recherche" Icon="Zoom" Foreground="White"/>
+                <NavigationViewItem Content="Accueil" x:Name="Accueil" Icon="Zoom" Foreground="White"/>
             </NavigationView.MenuItems>
 
             <Frame x:Name="mainFrame" />

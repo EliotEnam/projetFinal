@@ -49,8 +49,8 @@ namespace App1
                 case "Stat":
                     mainFrame.Navigate(typeof(Statistiques));
                     break;
-                case "Recherche":
-                    mainFrame.Navigate(typeof(Statistiques));
+                case "Accueil":
+                    mainFrame.Navigate(typeof(AffichageActivAdher));
                     break;
                 default:
                     break;

@@ -90,6 +90,38 @@ namespace App1
             return liste2;
         }
 
+        public ObservableCollection<Sceance> afficherSeancesParActiv(int lid)
+        {
+            int idt = lid;
+            ObservableCollection<Sceance> liste2 = new ObservableCollection<Sceance>();
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select * from sceance where idActivite = @idActivite";
+            commande.Parameters.AddWithValue("@idActivite", idt);
+            con.Open();
+            commande.Prepare();
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+                int idSce = Convert.ToInt32(r[0].ToString());
+                string date = r[1].ToString();
+                string heure = r[2].ToString();
+                int nbPlace = Convert.ToInt32(r[3].ToString());
+                double note = Convert.ToDouble(r[4].ToString());
+                int idAct = Convert.ToInt32(r[5].ToString());
+
+                Sceance sceance = new Sceance(idSce, idAct, nbPlace, note, date, heure);
+
+                liste2.Add(sceance);
+
+            }
+
+            r.Close();
+            con.Close();
+            return liste2;
+        }
+
         public ObservableCollection<Sceance> afficherSceances()
         {
 
@@ -145,6 +177,27 @@ namespace App1
             con.Close();
         }
 
+        public void ListeActivite(ComboBox cbx)
+        {
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select nom from activite";
+            con.Open();
+            commande.Prepare();
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+                string nom = r[0].ToString();
+                cbx.Items.Add(nom);
+
+            }
+
+            r.Close();
+            con.Close();
+        }
+
 
         public int getIdCategorie(string lnom)
         {
@@ -162,6 +215,29 @@ namespace App1
             {
                 id = Convert.ToInt32(r[0].ToString());
               
+            }
+
+            r.Close();
+            con.Close();
+            return id;
+        }
+
+        public int getIdActivite(string lnom)
+        {
+            string nom = lnom;
+            int id = 0;
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select f_id_act(@lnom)";
+            commande.Parameters.AddWithValue("@lnom", nom);
+            con.Open();
+            commande.Prepare();
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+                id = Convert.ToInt32(r[0].ToString());
+
             }
 
             r.Close();
@@ -389,6 +465,34 @@ namespace App1
                     con.Close();
             }
 
+        }
+
+        public int statActiv(string lkey, string lval, string lfname)
+        {
+
+            string key = lkey;
+            string val = lval;
+            string fname = lfname;
+            int nbr = 0;
+
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = $"Select {fname}(@{key})";
+            commande.Parameters.AddWithValue($"@{key}", val);
+            con.Open();
+            commande.Prepare();
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+                nbr = Convert.ToInt32(r[0].ToString());
+
+            }
+
+            r.Close();
+            con.Close();
+            return nbr;
         }
     }
 }

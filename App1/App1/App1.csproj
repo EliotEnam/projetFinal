@@ -13,10 +13,12 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Affichage.xaml" />
+    <None Remove="AffichageActivAdher.xaml" />
     <None Remove="AffichageAdherent.xaml" />
     <None Remove="AffichageSceances.xaml" />
     <None Remove="AjoutActiviteDialog.xaml" />
     <None Remove="AjoutAherentDialog.xaml" />
+    <None Remove="MesActivites.xaml" />
     <None Remove="ModActivite.xaml" />
     <None Remove="ModAdherent.xaml" />
     <None Remove="ModSceance.xaml" />
@@ -47,6 +49,16 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AffichageActivAdher.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MesActivites.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="ModSceance.xaml">

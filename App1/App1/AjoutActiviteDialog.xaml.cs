@@ -112,7 +112,7 @@ namespace App1
             }
 
 
-            if (cbx_categorie.SelectedIndex == null)
+            if (cbx_categorie.SelectedIndex < null)
             {
                 valide = false;
                 erreur_cat.Text = "L'adresse ne doit pas être vide";

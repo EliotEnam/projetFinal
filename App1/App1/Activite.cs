@@ -50,6 +50,15 @@ namespace App1
             set => coutVentCli = value;
         }
 
+        public int NbSceance
+        {
+            get => SingletonListe.getInstance().statActiv("nomActivite",Nom, "f_nbr_sceance_activite");
+        }
+
+        public int NbAdherent
+        {
+            get => SingletonListe.getInstance().statActiv("nomActivite", Nom, "f_nbr_adherent_activite");
+        }
 
 
     }
