@@ -52,6 +52,9 @@ namespace App1
                 case "Accueil":
                     mainFrame.Navigate(typeof(AffichageActivAdher));
                     break;
+                case "MesSceances":
+                    mainFrame.Navigate(typeof(MesSceances));
+                    break;
                 default:
                     break;
             }

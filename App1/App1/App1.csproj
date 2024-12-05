@@ -18,10 +18,11 @@
     <None Remove="AffichageSceances.xaml" />
     <None Remove="AjoutActiviteDialog.xaml" />
     <None Remove="AjoutAherentDialog.xaml" />
-    <None Remove="MesActivites.xaml" />
+    <None Remove="MesSceances.xaml" />
     <None Remove="ModActivite.xaml" />
     <None Remove="ModAdherent.xaml" />
     <None Remove="ModSceance.xaml" />
+    <None Remove="Noter.xaml" />
     <None Remove="Statistiques.xaml" />
   </ItemGroup>
 
@@ -51,12 +52,17 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="AffichageActivAdher.xaml">
+    <Page Update="Noter.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="MesActivites.xaml">
+    <Page Update="MesSceances.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AffichageActivAdher.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

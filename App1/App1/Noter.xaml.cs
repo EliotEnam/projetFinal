@@ -21,11 +21,17 @@ namespace App1
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MesActivites : Page
+    public sealed partial class Noter : ContentDialog
     {
-        public MesActivites()
+        public Noter()
         {
             this.InitializeComponent();
+            tbl_texte.Text= "Une scéance est notée sur cinq. "
+        }
+
+        private void btn_note_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

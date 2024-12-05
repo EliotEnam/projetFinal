@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,6 +26,7 @@ namespace App1
     {
         public Affichage()
         {
+ 
             this.InitializeComponent();
             SingletonListe.getInstance().afficherActivites();
             lvListe.ItemsSource = SingletonListe.getInstance().Liste;

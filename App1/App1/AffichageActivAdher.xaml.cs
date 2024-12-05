@@ -79,11 +79,13 @@ namespace App1
         private void lvListe_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
      
-            Activite activite = lvListe.SelectedItem as Activite;
-            lv_liste.ItemsSource = SingletonListe.getInstance().afficherSeancesParActiv(activite.IdActivite);
-            stack_activ.Visibility = Visibility.Collapsed;
-            stack_sce.Visibility = Visibility.Visible;
-    
+            if(lvListe.SelectedItem != null)
+            {
+                Activite activite = lvListe.SelectedItem as Activite;
+                lv_liste.ItemsSource = SingletonListe.getInstance().afficherSeancesParActiv(activite.IdActivite);
+                stack_activ.Visibility = Visibility.Collapsed;
+                stack_sce.Visibility = Visibility.Visible;
+            }
 
         }
 
