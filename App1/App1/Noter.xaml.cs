@@ -26,7 +26,7 @@ namespace App1
         public Noter()
         {
             this.InitializeComponent();
-            tbl_texte.Text= "Une scéance est notée sur cinq. "
+            tbl_texte.Text = "Une scéance est notée sur cinq. ";
         }
 
         private void btn_note_Click(object sender, RoutedEventArgs e)
