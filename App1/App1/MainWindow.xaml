@@ -21,10 +21,12 @@
             </NavigationView.MenuItems>
 
             <Frame x:Name="mainFrame" />
-
             <NavigationView.FooterMenuItems>
-
+                <NavigationViewItem Content="Compte" Icon="Contact" x:Name="compte"/>
+                <NavigationViewItem Content="Se connecter" Tag="SamplePage5" Icon="Contact" x:Name="connexion"/>
+                <NavigationViewItem Content="Deconnexion" Tag="SamplePage5" Icon="DisconnectDrive" x:Name="deconnexion" />
             </NavigationView.FooterMenuItems>
+
         </NavigationView>
     </Grid>
 </Window>

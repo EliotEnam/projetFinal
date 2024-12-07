@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,13 +24,24 @@ namespace App1
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        public XamlRoot XamlRoot { get; private set; }
+
         public MainWindow()
         {
             this.InitializeComponent();
-            mainFrame.Navigate(typeof(Affichage));
+            Activite.Visibility = Visibility.Collapsed;
+            Adherent.Visibility = Visibility.Collapsed;
+            Sceance.Visibility = Visibility.Collapsed;
+            Stat.Visibility = Visibility.Collapsed;
+            mainFrame.Navigate(typeof(PageConnnexion));
+            if (SessionUsager.AdminConnecte == true) { 
+                Activite.Visibility = Visibility.Visible;
+                Adherent.Visibility = Visibility.Visible;
+                Sceance.Visibility = Visibility.Visible;
+                Stat.Visibility = Visibility.Visible;
+            }
         }
 
-  
 
         private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
@@ -55,9 +67,14 @@ namespace App1
                 case "MesSceances":
                     mainFrame.Navigate(typeof(MesSceances));
                     break;
+                case "connexion":
+                    mainFrame.Navigate(typeof(PageConnnexion));
+                    break;
                 default:
                     break;
             }
         }
+
+
     }
 }
