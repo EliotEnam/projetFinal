@@ -8,7 +8,8 @@ namespace App1
 {
    public static class SessionUsager
     {
-        public static string IdAdherent {  get; set; }  
+        public static string IdAdherent {  get; set; }
+        public static string NomAdherent { get; set; }
         public static string NomAdmin { get; set; }
         public static string MdpAdmin { get; set; }
         public static string RoleUsager { get; set; }

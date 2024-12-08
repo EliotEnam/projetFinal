@@ -33,18 +33,17 @@ namespace App1
             Adherent.Visibility = Visibility.Collapsed;
             Sceance.Visibility = Visibility.Collapsed;
             Stat.Visibility = Visibility.Collapsed;
+            MesSceances.Visibility = Visibility.Collapsed;
+            compte.Visibility = Visibility.Collapsed;
+      
             mainFrame.Navigate(typeof(PageConnnexion));
-            if (SessionUsager.AdminConnecte == true) { 
-                Activite.Visibility = Visibility.Visible;
-                Adherent.Visibility = Visibility.Visible;
-                Sceance.Visibility = Visibility.Visible;
-                Stat.Visibility = Visibility.Visible;
-            }
+            
         }
 
 
         private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
+            refresh();
             var item = (NavigationViewItem)args.SelectedItem;
 
             switch (item.Name)
@@ -70,8 +69,43 @@ namespace App1
                 case "connexion":
                     mainFrame.Navigate(typeof(PageConnnexion));
                     break;
+                case "deconnexion":
+                    SessionUsager.TerminerSession();
+                    refresh();
+                    mainFrame.Navigate(typeof(PageConnnexion));
+                    break;
                 default:
                     break;
+            }
+        }
+
+        public void refresh()
+        {
+            if (SessionUsager.AdminConnecte == true)
+            {
+                Activite.Visibility = Visibility.Visible;
+                Adherent.Visibility = Visibility.Visible;
+                Sceance.Visibility = Visibility.Visible;
+                Stat.Visibility = Visibility.Visible;
+                connexion.Visibility = Visibility.Collapsed;
+            }
+            if (SessionUsager.AdherentConnecte == true)
+            {
+                MesSceances.Visibility = Visibility.Visible;
+                connexion.Visibility = Visibility.Collapsed;
+                compte.Visibility = Visibility.Visible;
+                compte.Content = SessionUsager.IdAdherent;
+                
+            }
+            if (SessionUsager.AdherentConnecte == false) 
+            {
+                Activite.Visibility = Visibility.Collapsed;
+                Adherent.Visibility = Visibility.Collapsed;
+                Sceance.Visibility = Visibility.Collapsed;
+                Stat.Visibility = Visibility.Collapsed;
+                MesSceances.Visibility = Visibility.Collapsed;
+                compte.Visibility = Visibility.Collapsed;
+                connexion.Visibility = Visibility.Visible;
             }
         }
 

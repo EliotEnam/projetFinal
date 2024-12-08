@@ -37,8 +37,6 @@ namespace App1
 
             heureSceance.SelectedTime = heure;
             tbl_sous.Text = "Pour des raisons d'intégrité, il n'est pas possible de changer l'activité \n à laquelle appartient la scéance";
-    
-     
      
         }
 

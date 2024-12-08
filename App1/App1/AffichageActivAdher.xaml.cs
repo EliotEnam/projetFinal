@@ -28,6 +28,7 @@ namespace App1
             this.InitializeComponent();
             SingletonListe.getInstance().afficherActivites();
             lvListe.ItemsSource = SingletonListe.getInstance().Liste;
+          
             //SingletonListe.getInstance().ListeActivite(cbx_activ);
         }
 
@@ -55,24 +56,45 @@ namespace App1
             Button btn = sender as Button;
             Sceance sceance = btn.DataContext as Sceance;
             lv_liste.SelectedItem = sceance;
-            ContentDialog dialog = new ContentDialog();
-            dialog.XamlRoot = this.XamlRoot;
-            dialog.Title = "Mon titre";
-            dialog.PrimaryButtonText = "Je le confirme";
-            dialog.CloseButtonText = "Annuler";
-            dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.Content = $"Confirmez votre inscription à la scéance du {sceance.Date} \n à {sceance.Heure.Substring(0,2)}H";
+            DateTime dateAuj = DateTime.Now;
+            DateTime dateSceance = DateTime.Parse(sceance.Date.ToString());
+            if ((dateSceance.Date < dateAuj.Date))
+            {
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = this.XamlRoot;
+                dialog.Title = "Mon titre";
+                dialog.PrimaryButtonText = "Je comprends";
+                dialog.DefaultButton = ContentDialogButton.Primary;
+                dialog.Content = $"Cette scéance a deja eu lieu";
 
-            ContentDialogResult result = await dialog.ShowAsync();
-
-            if(result == ContentDialogResult.Primary)
+                ContentDialogResult result = await dialog.ShowAsync();
+            }
+            else if ()
             {
 
             }
             else
             {
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = this.XamlRoot;
+                dialog.Title = "Mon titre";
+                dialog.PrimaryButtonText = "Je le confirme";
+                dialog.CloseButtonText = "Annuler";
+                dialog.DefaultButton = ContentDialogButton.Primary;
+                dialog.Content = $"Confirmez votre inscription à la scéance du {sceance.Date} \n à {sceance.Heure.Substring(0, 2)}H";
 
+                ContentDialogResult result = await dialog.ShowAsync();
+
+                if (result == ContentDialogResult.Primary)
+                {
+
+                }
+                else
+                {
+
+                }
             }
+            
 
         }
 

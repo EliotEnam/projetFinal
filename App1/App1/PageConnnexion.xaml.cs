@@ -28,6 +28,39 @@ namespace App1
             this.InitializeComponent();
         }
 
+   
+
+        public bool validation()
+        {
+            bool valide = true;
+            resetErreurs();
+
+            if (stack_nom.Visibility == Visibility.Visible && string.IsNullOrWhiteSpace(tbx_nom.Text)){ 
+                valide = false;
+                erreur_nom.Text = "Le nom ne doit pas être vide";
+            }
+            if (stack_password.Visibility == Visibility.Visible && string.IsNullOrWhiteSpace(tbx_pass.Password))
+            {
+                valide = false;
+                erreur_pass.Text = "Veuillez entrer un mot de passe";
+            }
+
+            if (string.IsNullOrWhiteSpace(tbx_id_adherent.Text))
+            {
+                valide = false;
+                erreur_id.Text = "Veuillez entrer votre identifiant";
+            }
+            return valide;
+        }
+
+        private void resetErreurs()
+        {
+            erreur_nom.Text = String.Empty;
+            erreur_pass.Text = String.Empty;
+            erreur_id.Text = String.Empty;
+      
+        }
+
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
 
@@ -38,6 +71,7 @@ namespace App1
             stack_idAdherent.Visibility = Visibility.Collapsed;
             stack_nom.Visibility = Visibility.Visible;
             stack_password.Visibility = Visibility.Visible;
+            tbl_texte.Text = "Entrez vos identifiants";
         }
 
         private void TwoState_Unchecked(object sender, RoutedEventArgs e)
@@ -45,11 +79,39 @@ namespace App1
             stack_idAdherent.Visibility = Visibility.Visible;
             stack_nom.Visibility = Visibility.Collapsed;
             stack_password.Visibility = Visibility.Collapsed;
+            tbl_texte.Text = "Entrez votre identifiant";
         }
 
         private void btn_connexion_Click(object sender, RoutedEventArgs e)
         {
+            if (validation() == true)
+            {
+                resetErreurs();
+                if (stack_nom.Visibility == Visibility.Visible && stack_password.Visibility == Visibility.Visible)
+                {
+                    string nom = tbx_nom.Text;
+                }
+                else if (stack_idAdherent.Visibility == Visibility.Visible)
+                {
+                    string id = tbx_id_adherent.Text;
+                    if (SingletonListe.getInstance().connexionAdherent(id) == "")
+                    {
+                        tbl_error.Visibility = Visibility.Visible;    
+                        tbl_error.Text = "Adherent inexistant";
+                    }
+                    else
+                    {
+                        SessionUsager.NomAdherent = SingletonListe.getInstance().connexionAdherent(id);
+                        SessionUsager.IdAdherent = tbx_id_adherent.Text;
+                        SessionUsager.AdherentConnecte = true;
+                        tbl_error.Visibility = Visibility.Visible;
+                        tbl_error.Text = SessionUsager.IdAdherent.ToString();
+                        Frame.Navigate(typeof(AffichageActivAdher));
+                    }
 
+                }
+
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Org.BouncyCastle.Crypto;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,14 +24,40 @@ namespace App1
     /// </summary>
     public sealed partial class Noter : ContentDialog
     {
-        public Noter()
+        int idSceance;
+      
+        public Noter(int idSce)
         {
             this.InitializeComponent();
             tbl_texte.Text = "Une scéance est notée sur cinq. ";
+            tbl_slider_value.Text = "Ma note:" + Math.Round(Convert.ToDouble(slider.Value), 2).ToString();
+            idSceance = idSce;
+        
         }
 
-        private void btn_note_Click(object sender, RoutedEventArgs e)
+        private void Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
+            tbl_slider_value.Text = "Ma note:" + Math.Round(Convert.ToDouble(slider.Value),2).ToString();
+        }
+
+        private void ContentDialog_CloseButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            
+        }
+
+        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            SingletonListe.getInstance().noteParticipation(idSceance, SessionUsager.IdAdherent, Math.Round(Convert.ToDouble(slider.Value), 2));
+        }
+
+        private void ContentDialog_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
+        {
+            if (args.Result == ContentDialogResult.Primary)
+            {
+                    args.Cancel = true;
+            }
+            else
+                args.Cancel = false;
 
         }
     }

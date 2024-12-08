@@ -29,7 +29,7 @@ namespace App1
         {
             this.InitializeComponent();
       
-            lv_liste.ItemsSource = SingletonListe.getInstance().afficherSceances();
+            lv_liste.ItemsSource = SingletonListe.getInstance().afficherSeancesParAdherent(SessionUsager.IdAdherent);
             
 
         }
@@ -40,8 +40,18 @@ namespace App1
             Sceance sceance = btn.DataContext as Sceance;
             DateTime dateAuj = DateTime.Now;
             DateTime dateSceance = DateTime.Parse(sceance.Date.ToString());
-            if ((dateSceance - dateAuj).TotalDays < 0)
+            if ((dateSceance.Date < dateAuj.Date))
             {
+
+                Noter dialog = new Noter(sceance.IdSce);
+                dialog.XamlRoot = this.XamlRoot;
+                dialog.PrimaryButtonText = "Modifier";
+                dialog.CloseButtonText = "Annuler";
+                dialog.DefaultButton = ContentDialogButton.Close;
+                ContentDialogResult resultat = await dialog.ShowAsync();
+            }
+            else
+            {      
                 ContentDialog dialog = new ContentDialog();
                 dialog.XamlRoot = this.XamlRoot;
                 dialog.Title = "Mon titre";
@@ -50,16 +60,6 @@ namespace App1
                 dialog.Content = $"Cette scéance n'a pas encore eu lieu. Vous ne pouvez pas encore la noter";
 
                 ContentDialogResult result = await dialog.ShowAsync();
-
-            }
-            else
-            {
-                Noter dialog = new Noter();
-                dialog.XamlRoot = this.XamlRoot;
-                dialog.PrimaryButtonText = "Modifier";
-                dialog.CloseButtonText = "Annuler";
-                dialog.DefaultButton = ContentDialogButton.Close;
-                ContentDialogResult resultat = await dialog.ShowAsync();
 
             }
         }

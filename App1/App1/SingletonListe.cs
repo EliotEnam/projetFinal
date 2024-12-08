@@ -121,6 +121,37 @@ namespace App1
             con.Close();
             return liste2;
         }
+        public ObservableCollection<Sceance> afficherSeancesParAdherent(string lid)
+        {
+            string idt = lid;
+            ObservableCollection<Sceance> liste2 = new ObservableCollection<Sceance>();
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select * from sceance where idSceance in (select idSceance from participationsceance where idAdherent = @idAdherent)";
+            commande.Parameters.AddWithValue("@idAdherent", idt);
+            con.Open();
+            commande.Prepare();
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+                int idSce = Convert.ToInt32(r[0].ToString());
+                string date = r[1].ToString();
+                string heure = r[2].ToString();
+                int nbPlace = Convert.ToInt32(r[3].ToString());
+                double note = Convert.ToDouble(r[4].ToString());
+                int idAct = Convert.ToInt32(r[5].ToString());
+
+                Sceance sceance = new Sceance(idSce, idAct, nbPlace, note, date, heure);
+
+                liste2.Add(sceance);
+
+            }
+
+            r.Close();
+            con.Close();
+            return liste2;
+        }
 
         public ObservableCollection<Sceance> afficherSceances()
         {
@@ -259,6 +290,31 @@ namespace App1
             while (r.Read())
             {
                 nom = r[0].ToString();
+
+            }
+
+            r.Close();
+            con.Close();
+            return nom;
+        }
+
+        public string connexionAdherent(string lid)
+        {
+            string id = lid;
+            string nom = "";
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select f_sonnec_adher(@lid)";
+            commande.Parameters.AddWithValue("@lid", id);
+            con.Open();
+            commande.Prepare();
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+        
+                    nom = r[0].ToString();
+               
 
             }
 
@@ -466,7 +522,33 @@ namespace App1
             }
 
         }
+        public void noteParticipation(int lidSce, string lidAdhe, double note)
+        {
 
+            int idS = lidSce;
+            string idA = lidAdhe;
+            double not = note;
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("p_Noter");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.AddWithValue("@lidSceance", idS);
+                commande.Parameters.AddWithValue("@lidAdherent", idA);
+                commande.Parameters.AddWithValue("@lnote", not);
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+        }
         public int statActiv(string lkey, string lval, string lfname)
         {
 

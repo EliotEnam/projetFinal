@@ -26,7 +26,7 @@
                             <ColumnDefinition Width="*" />
 
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Activite" Grid.Column="0" FontWeight="Bold" Margin="5" Foreground="Black" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Sceance" Grid.Column="0" FontWeight="Bold" Margin="5" Foreground="Black" HorizontalAlignment="Center"/>
                         <TextBlock Text="idActivité" Grid.Column="1" FontWeight="Bold" Margin="5" Foreground="Black"  HorizontalAlignment="Center"/>
                         <TextBlock Text="Date" Grid.Column="2" FontWeight="Bold" Margin="5" Foreground="Black"  HorizontalAlignment="Center"/>
                         <TextBlock Text="Heure" Grid.Column="3" FontWeight="Bold" Margin="5" Foreground="Black"  HorizontalAlignment="Center"/>
