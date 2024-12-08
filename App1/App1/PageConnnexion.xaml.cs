@@ -23,12 +23,12 @@ namespace App1
     /// </summary>
     public sealed partial class PageConnnexion : Page
     {
+       
+
         public PageConnnexion()
         {
             this.InitializeComponent();
         }
-
-   
 
         public bool validation()
         {
@@ -45,7 +45,7 @@ namespace App1
                 erreur_pass.Text = "Veuillez entrer un mot de passe";
             }
 
-            if (string.IsNullOrWhiteSpace(tbx_id_adherent.Text))
+            if (stack_idAdherent.Visibility == Visibility.Visible && string.IsNullOrWhiteSpace(tbx_id_adherent.Text))
             {
                 valide = false;
                 erreur_id.Text = "Veuillez entrer votre identifiant";
@@ -90,6 +90,22 @@ namespace App1
                 if (stack_nom.Visibility == Visibility.Visible && stack_password.Visibility == Visibility.Visible)
                 {
                     string nom = tbx_nom.Text;
+                    string pass = tbx_pass.Password;
+                    if(SingletonListe.getInstance().connexionAdmin(nom, pass) == "")
+                    {
+                        tbl_error.Visibility = Visibility.Visible;
+                        tbl_error.Text = "Mot de passe ou nom incorrect";
+                    }
+                    else
+                    {
+                        SessionUsager.NomAdmin = nom;
+                        SessionUsager.MdpAdmin = pass;
+                        SessionUsager.AdherentConnecte = false;
+                        SessionUsager.AdminConnecte = true;
+                        Frame.Navigate(typeof(Affichage));
+
+                        MaNav.leNav.SelectedItem = MaNav.leNav.MenuItems.OfType<NavigationViewItem>().FirstOrDefault(item => (string)item.Tag == "Activ");
+                    }
                 }
                 else if (stack_idAdherent.Visibility == Visibility.Visible)
                 {
@@ -104,11 +120,11 @@ namespace App1
                         SessionUsager.NomAdherent = SingletonListe.getInstance().connexionAdherent(id);
                         SessionUsager.IdAdherent = tbx_id_adherent.Text;
                         SessionUsager.AdherentConnecte = true;
-                        tbl_error.Visibility = Visibility.Visible;
-                        tbl_error.Text = SessionUsager.IdAdherent.ToString();
                         Frame.Navigate(typeof(AffichageActivAdher));
-                    }
 
+                        MaNav.leNav.SelectedItem = MaNav.leNav.MenuItems.OfType<NavigationViewItem>().FirstOrDefault(item => (string)item.Tag == "Accueil");
+
+                    }
                 }
 
             }

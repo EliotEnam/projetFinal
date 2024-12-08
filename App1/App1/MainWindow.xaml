@@ -8,14 +8,14 @@
     mc:Ignorable="d">
 
     <Grid Background="#212a31"  >
-        <NavigationView PaneTitle="Menu" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" SelectionChanged="NavigationView_SelectionChanged" Foreground="White" >
+        <NavigationView PaneTitle="Menu" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" SelectionChanged="NavigationView_SelectionChanged" Foreground="White" x:Name="nav">
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader Content="Pages" Foreground="White"/>
-                <NavigationViewItem Content="Activitées" x:Name="Activite" Icon="List" Foreground="White"/>
+                <NavigationViewItem Content="Activitées" x:Name="Activite" Icon="List" Foreground="White" Tag="Activ"/>
                 <NavigationViewItem Content="Adhérents" x:Name="Adherent" Icon="People" Foreground="White"/>
                 <NavigationViewItem Content="Sceance" x:Name="Sceance" Icon="Caption" Foreground="White"/>
                 <NavigationViewItem Content="Statistiques" x:Name="Stat" Icon="Shop" Foreground="White"/>
-                <NavigationViewItem Content="Accueil" x:Name="Accueil" Icon="Zoom" Foreground="White"/>
+                <NavigationViewItem Content="Accueil" x:Name="Accueil" Icon="Zoom" Foreground="White" Tag="Accueil"/>
                 <NavigationViewItem Content="Mes scéances" x:Name="MesSceances" Icon="Zoom" Foreground="White"/>
                 
             </NavigationView.MenuItems>

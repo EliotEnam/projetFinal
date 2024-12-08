@@ -26,6 +26,7 @@ namespace App1
     {
         public XamlRoot XamlRoot { get; private set; }
 
+   
         public MainWindow()
         {
             this.InitializeComponent();
@@ -35,7 +36,7 @@ namespace App1
             Stat.Visibility = Visibility.Collapsed;
             MesSceances.Visibility = Visibility.Collapsed;
             compte.Visibility = Visibility.Collapsed;
-      
+            MaNav.leNav = nav;
             mainFrame.Navigate(typeof(PageConnnexion));
             
         }
@@ -87,6 +88,7 @@ namespace App1
                 Adherent.Visibility = Visibility.Visible;
                 Sceance.Visibility = Visibility.Visible;
                 Stat.Visibility = Visibility.Visible;
+                Accueil.Visibility = Visibility.Collapsed;
                 connexion.Visibility = Visibility.Collapsed;
             }
             if (SessionUsager.AdherentConnecte == true)
@@ -94,10 +96,10 @@ namespace App1
                 MesSceances.Visibility = Visibility.Visible;
                 connexion.Visibility = Visibility.Collapsed;
                 compte.Visibility = Visibility.Visible;
-                compte.Content = SessionUsager.IdAdherent;
+                compte.Content = SessionUsager.NomAdherent;
                 
             }
-            if (SessionUsager.AdherentConnecte == false) 
+            if (SessionUsager.AdherentConnecte == false && SessionUsager.AdminConnecte == false ) 
             {
                 Activite.Visibility = Visibility.Collapsed;
                 Adherent.Visibility = Visibility.Collapsed;
@@ -107,6 +109,7 @@ namespace App1
                 compte.Visibility = Visibility.Collapsed;
                 connexion.Visibility = Visibility.Visible;
             }
+
         }
 
 

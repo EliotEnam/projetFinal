@@ -28,5 +28,9 @@ namespace App1
         public string Date { get => date; set => date = value; }
         public int Nbplace { get => nbplace; set => nbplace = value; } 
         public string Heure { get => heure; set => heure = value; }
+
+        public string NomActiv { get => SingletonListe.getInstance().getNomActivite(idAct); }
+
+        public double NoteParAdherent { get => SingletonListe.getInstance().noteActiv(IdSce, SessionUsager.IdAdherent); }
     }
 }

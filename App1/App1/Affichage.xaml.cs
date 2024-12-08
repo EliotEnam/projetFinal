@@ -71,5 +71,50 @@ namespace App1
             SingletonListe.getInstance().supprimer(activite.IdActivite.ToString(),"supprimerActivite");
             SingletonListe.getInstance().afficherActivites();
         }
+
+        private void lvListe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lvListe.SelectedItem != null)
+            {
+                Activite activite = lvListe.SelectedItem as Activite;
+                lv_liste.ItemsSource = SingletonListe.getInstance().afficherSeancesParActiv(activite.IdActivite);
+                stack_activ.Visibility = Visibility.Collapsed;
+                stack_sce.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void btn_sce_Click(object sender, RoutedEventArgs e)
+        {
+            stack_activ.Visibility = Visibility.Visible;
+            stack_sce.Visibility = Visibility.Collapsed;
+            SingletonListe.getInstance().afficherActivites();
+            lvListe.ItemsSource = SingletonListe.getInstance().Liste;
+        }
+
+        private async void btn_modifier_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            Sceance sceance = btn.DataContext as Sceance;
+            lv_liste.SelectedItem = sceance;
+            string[] table = { sceance.IdSce.ToString(), sceance.Date, sceance.Heure, sceance.Nbplace.ToString() };
+
+            ModSceance dialog = new ModSceance(table);
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.PrimaryButtonText = "Modifier";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Close;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+            lv_liste.ItemsSource = SingletonListe.getInstance().afficherSceances();
+        }
+
+        private void btn_supprimer_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            Sceance sceance = btn.DataContext as Sceance;
+            lv_liste.SelectedItem = sceance;
+            SingletonListe.getInstance().supprimer(sceance.IdSce.ToString(), "supprimerSceance");
+            lv_liste.ItemsSource = (SingletonListe.getInstance().afficherSceances());
+        }
     }
 }

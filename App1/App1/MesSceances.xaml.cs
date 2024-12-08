@@ -40,7 +40,18 @@ namespace App1
             Sceance sceance = btn.DataContext as Sceance;
             DateTime dateAuj = DateTime.Now;
             DateTime dateSceance = DateTime.Parse(sceance.Date.ToString());
-            if ((dateSceance.Date < dateAuj.Date))
+            if(sceance.NoteParAdherent != 0)
+            {
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = this.XamlRoot;
+                dialog.Title = "Mon titre";
+                dialog.PrimaryButtonText = "Je comprends";
+                dialog.DefaultButton = ContentDialogButton.Primary;
+                dialog.Content = $"Vous avez deja donné la note de {sceance.NoteParAdherent} à cette scéacnce";
+
+                ContentDialogResult result = await dialog.ShowAsync();
+            }
+            else if ((dateSceance.Date < dateAuj.Date))
             {
 
                 Noter dialog = new Noter(sceance.IdSce);

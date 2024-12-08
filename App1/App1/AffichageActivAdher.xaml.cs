@@ -69,9 +69,17 @@ namespace App1
 
                 ContentDialogResult result = await dialog.ShowAsync();
             }
-            else if ()
+            else if (SingletonListe.getInstance().adherenDejaParticip(SessionUsager.IdAdherent, sceance.IdAct) == "OUI")
             {
 
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = this.XamlRoot;
+                dialog.Title = "Mon titre";
+                dialog.PrimaryButtonText = "Je comprends";
+                dialog.DefaultButton = ContentDialogButton.Primary;
+                dialog.Content = $"Vous êtes déja inscrit à cette activité";
+
+                ContentDialogResult result = await dialog.ShowAsync();
             }
             else
             {
@@ -87,15 +95,9 @@ namespace App1
 
                 if (result == ContentDialogResult.Primary)
                 {
-
-                }
-                else
-                {
-
+                    SingletonListe.getInstance().ajoutParticipSceance(sceance.IdSce, SessionUsager.IdAdherent);
                 }
             }
-            
-
         }
 
         private void lvListe_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -298,6 +298,29 @@ namespace App1
             return nom;
         }
 
+        public string getNomActivite(int lid)
+        {
+            int id = lid;
+            string nom = "";
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select f_nomActiv(@lid)";
+            commande.Parameters.AddWithValue("@lid", id);
+            con.Open();
+            commande.Prepare();
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+                nom = r[0].ToString();
+
+            }
+
+            r.Close();
+            con.Close();
+            return nom;
+        }
+
         public string connexionAdherent(string lid)
         {
             string id = lid;
@@ -322,6 +345,87 @@ namespace App1
             con.Close();
             return nom;
         }
+
+        public string connexionAdmin(string lnom, string lpass)
+        {
+            string id= "";
+            string nom = lnom;
+            string pass = lpass;
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select f_sonnec_admin(@lnom,@pass)";
+            commande.Parameters.AddWithValue("@lnom", nom);
+            commande.Parameters.AddWithValue("@pass", pass);
+            con.Open();
+            commande.Prepare();
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+
+                id = r[0].ToString();
+
+
+            }
+
+            r.Close();
+            con.Close();
+            return id;
+        }
+
+        public double noteActiv(int lidSce, string lidAd)
+        {
+            int idSce = lidSce;
+            string idAd = lidAd;
+            double note = 0;
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select f_note(@lidSe,@lidAd)";
+            commande.Parameters.AddWithValue("@lidSe", idSce);
+            commande.Parameters.AddWithValue("@lidAd", idAd);
+            con.Open();
+            commande.Prepare();
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+
+                note = Convert.ToDouble(r[0].ToString());
+
+
+            }
+
+            r.Close();
+            con.Close();
+            return note;
+        }
+        public string adherenDejaParticip(string lidAd, int lidAc)
+        {
+            string idA = lidAd;
+            int idAc = lidAc;
+            string nom = "";
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = "Select f_adherent_deja_activite(@lidA, @lidActivite)";
+            commande.Parameters.AddWithValue("@lidA", idA);
+            commande.Parameters.AddWithValue("@lidActivite", idAc);
+            con.Open();
+            commande.Prepare();
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+
+                nom = r[0].ToString();
+
+
+            }
+
+            r.Close();
+            con.Close();
+            return nom;
+        }
+
         public void ajoutAdherent(string lnom,string lprenom, string ladresse, string ldate)
         {
 
@@ -339,6 +443,37 @@ namespace App1
                 commande.Parameters.AddWithValue("@lprenom", prenom);
                 commande.Parameters.AddWithValue("@laddresse", adresse);
                 commande.Parameters.AddWithValue("@ldatenaiss", dateNaiss);
+
+                con.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
+
+        }
+
+        public void ajoutParticipSceance(int lidSce, string lidAd)
+        {
+
+            int idSce = lidSce;
+            string idAd = lidAd;
+            double note = 0;
+         
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("ajout_particip_sceance");
+                commande.Connection = con;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+                commande.Parameters.AddWithValue("@lidSceance", idSce);
+                commande.Parameters.AddWithValue("@lidAdherent", idAd);
+                commande.Parameters.AddWithValue("@lnoteAppreciation", note);
 
                 con.Open();
                 commande.Prepare();
