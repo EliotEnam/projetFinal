@@ -50,6 +50,13 @@ namespace App1
             set => coutVentCli = value;
         }
 
+        public string StringCSV
+        {
+            get
+            {
+                return $"{IdActivite};{Nom};{IdCategorie};{CoutOrgCli};{CoutVentCli}";
+            }
+        }
         public int NbSceance
         {
             get => SingletonListe.getInstance().statActiv("nomActivite",Nom, "f_nbr_sceance_activite");

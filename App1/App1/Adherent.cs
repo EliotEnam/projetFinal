@@ -31,5 +31,13 @@ namespace App1
         public string Adresse { get => adresse; set => adresse = value; }
         public string DateNaiss { get => dateNaiss; set => dateNaiss = value; }
         public string Nom { get => nom; set => nom = value; }
+
+        public string StringCSV
+        {
+            get
+            {
+                return $"{Id};{Nom};{Prenom};{Adresse};{DateNaiss};{Age}";
+            }
+        }
     }
 }

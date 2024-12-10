@@ -12,7 +12,8 @@
     <ScrollViewer> <StackPanel Orientation="Vertical" 
                     Margin="30">
         <TextBlock Text="Liste des scéances" Margin="25" FontWeight="ExtraBlack" HorizontalAlignment="Center" Foreground="Black" FontSize="25"/>
-        <ListView x:Name="lv_liste" BorderBrush="Gray" BorderThickness="1">
+            <TextBlock Text="Les scéances sont automatiquement ajoutées lors de la création de l'activité" Margin="15" FontWeight="ExtraBlack" HorizontalAlignment="Center" Foreground="Black" FontSize="25" FontStyle="Oblique"/>
+            <ListView x:Name="lv_liste" BorderBrush="Gray" BorderThickness="1">
             <ListView.Header>
                 <Grid Background="LightGray" BorderBrush="Black" BorderThickness="1">
                     <Grid.ColumnDefinitions>

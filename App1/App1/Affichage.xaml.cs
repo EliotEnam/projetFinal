@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Navigation;
 using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,6 +25,7 @@ namespace App1
     /// </summary>
     public sealed partial class Affichage : Page
     {
+        int _id =;
         public Affichage()
         {
  
@@ -72,16 +74,7 @@ namespace App1
             SingletonListe.getInstance().afficherActivites();
         }
 
-        private void lvListe_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (lvListe.SelectedItem != null)
-            {
-                Activite activite = lvListe.SelectedItem as Activite;
-                lv_liste.ItemsSource = SingletonListe.getInstance().afficherSeancesParActiv(activite.IdActivite);
-                stack_activ.Visibility = Visibility.Collapsed;
-                stack_sce.Visibility = Visibility.Visible;
-            }
-        }
+   
 
         private void btn_sce_Click(object sender, RoutedEventArgs e)
         {
@@ -114,7 +107,18 @@ namespace App1
             Sceance sceance = btn.DataContext as Sceance;
             lv_liste.SelectedItem = sceance;
             SingletonListe.getInstance().supprimer(sceance.IdSce.ToString(), "supprimerSceance");
-            lv_liste.ItemsSource = (SingletonListe.getInstance().afficherSceances());
+            lv_liste.ItemsSource = SingletonListe.getInstance().afficherSeancesParActiv(_id);
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            Activite activite = btn.DataContext as Activite;
+            lvListe.SelectedItem = activite;
+            _id = activite.IdActivite;
+            lv_liste.ItemsSource = SingletonListe.getInstance().afficherSeancesParActiv(activite.IdActivite);
+            stack_activ.Visibility = Visibility.Collapsed;
+            stack_sce.Visibility = Visibility.Visible;
         }
     }
 }

@@ -33,12 +33,59 @@ namespace App1
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-     
+            var picker = new Windows.Storage.Pickers.FileSavePicker();
+
+            var window = App.MainWindow;
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+            WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+
+            picker.SuggestedFileName = "Activites";
+            picker.FileTypeChoices.Add("Fichier texte", new List<string>() { ".csv" });
+
+            //crée le fichier
+            Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
+
+
+
+            List<Activite> liste = new List<Activite>();
+            liste.AddRange(SingletonListe.getInstance().Liste);
+
+
+
+            // La fonction ToString de la classe Client retourne: nom + ";" + prenom
+            if (monFichier != null)
+                await Windows.Storage.FileIO.WriteLinesAsync(monFichier, liste.ConvertAll(x => x.StringCSV), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+            SingletonListe.getInstance().afficherActivites();
+            lv_liste.ItemsSource = SingletonListe.getInstance().Liste;
+
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            var picker = new Windows.Storage.Pickers.FileSavePicker();
 
+            var window = App.MainWindow;
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+            WinRT.Interop.InitializeWithWindow.Initialize(picker, hWnd);
+
+            picker.SuggestedFileName = "Adherents";
+            picker.FileTypeChoices.Add("Fichier texte", new List<string>() { ".csv" });
+
+            //crée le fichier
+            Windows.Storage.StorageFile monFichier = await picker.PickSaveFileAsync();
+
+
+
+            List<Adherent> liste = new List<Adherent>();
+            liste.AddRange(SingletonListe.getInstance().afficherAdherents());
+
+
+
+            // La fonction ToString de la classe Client retourne: nom + ";" + prenom
+            if (monFichier != null)
+                await Windows.Storage.FileIO.WriteLinesAsync(monFichier, liste.ConvertAll(x => x.StringCSV), Windows.Storage.Streams.UnicodeEncoding.Utf8);
+            SingletonListe.getInstance().afficherActivites();
+            lv_liste.ItemsSource = SingletonListe.getInstance().Liste;
         }
     }
 }

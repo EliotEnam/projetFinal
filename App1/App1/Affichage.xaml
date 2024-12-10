@@ -28,7 +28,7 @@
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" x:Name="stack_activ">
                 <TextBlock Text="Liste des activités" HorizontalAlignment="Center" FontSize="25" Margin="0,25" FontWeight="Bold" Foreground="#d3d9d4"/>
                 <Button x:Name="ajoutActivite" Content="Ajpouter un adhérent" Click="ajoutActivite_Click" Grid.Row="1" HorizontalAlignment="Right" Margin="25,0"/>
-                <ScrollViewer><GridView x:Name="lvListe" Grid.Row="1" Grid.ColumnSpan="5" SelectionChanged="lvListe_SelectionChanged">
+                <ScrollViewer><GridView x:Name="lvListe" Grid.Row="1" Grid.ColumnSpan="5">
                     <GridView.ItemTemplate >
                         <DataTemplate x:DataType="local:Activite">
                             <Border  Background="#d3d9d4"
@@ -49,6 +49,9 @@
                                             </Button>
                                             <Button Click="Button_Click_1" Margin="0,0,15,0">
                                                 <SymbolIcon Symbol="Delete" Foreground="red" />
+                                            </Button>
+                                            <Button Click="Button_Click_2" Margin="0,0,15,0">
+                                                <SymbolIcon Symbol="Globe" Foreground="LawnGreen" />
                                             </Button>
                                         </StackPanel>
                                     </StackPanel>
