@@ -25,7 +25,7 @@ namespace App1
     /// </summary>
     public sealed partial class Affichage : Page
     {
-        int _id =;
+        int _id =0;
         public Affichage()
         {
  
@@ -101,13 +101,28 @@ namespace App1
             lv_liste.ItemsSource = SingletonListe.getInstance().afficherSceances();
         }
 
-        private void btn_supprimer_Click(object sender, RoutedEventArgs e)
+        private async void btn_supprimer_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
             Sceance sceance = btn.DataContext as Sceance;
             lv_liste.SelectedItem = sceance;
-            SingletonListe.getInstance().supprimer(sceance.IdSce.ToString(), "supprimerSceance");
-            lv_liste.ItemsSource = SingletonListe.getInstance().afficherSeancesParActiv(_id);
+
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "Mon titre";
+            dialog.PrimaryButtonText = "Oui";
+            dialog.SecondaryButtonText = "Non";
+            dialog.DefaultButton = ContentDialogButton.Secondary;
+            dialog.Content = $"Êtes-vous sûr de vouloir suprimer la scéance du {sceance.Date} de l'activité {SingletonListe.getInstance().getNomActivite(sceance.IdAct)} ?";
+
+            ContentDialogResult result = await dialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                SingletonListe.getInstance().supprimer(sceance.IdSce.ToString(), "supprimerSceance");
+                lv_liste.ItemsSource = SingletonListe.getInstance().afficherSeancesParActiv(_id);
+            }
+               
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

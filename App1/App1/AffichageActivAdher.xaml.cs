@@ -58,7 +58,31 @@ namespace App1
             lv_liste.SelectedItem = sceance;
             DateTime dateAuj = DateTime.Now;
             DateTime dateSceance = DateTime.Parse(sceance.Date.ToString());
-            if ((dateSceance.Date < dateAuj.Date))
+            if(SessionUsager.IdAdherent == null)
+            {
+
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = this.XamlRoot;
+                dialog.Title = "Mon titre";
+                dialog.PrimaryButtonText = "J'ai compris";
+                dialog.DefaultButton = ContentDialogButton.Primary;
+                dialog.Content = $"Veuillez-vous connecter";
+
+                ContentDialogResult result = await dialog.ShowAsync();
+          
+            }
+            else if(sceance.Nbplace == 0)
+            {
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = this.XamlRoot;
+                dialog.Title = "Mon titre";
+                dialog.PrimaryButtonText = "J'ai compris";
+                dialog.DefaultButton = ContentDialogButton.Primary;
+                dialog.Content = $"Il n'y a plus de place disponible pour cette scéance. Veuillez-en choisir une autre";
+
+                ContentDialogResult result = await dialog.ShowAsync();
+            }
+            else if ((dateSceance.Date < dateAuj.Date))
             {
                 ContentDialog dialog = new ContentDialog();
                 dialog.XamlRoot = this.XamlRoot;

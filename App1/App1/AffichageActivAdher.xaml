@@ -72,7 +72,7 @@
 
 
             <StackPanel Orientation="Vertical" 
-                    Margin="30" Grid.Row="3" Visibility="Collapsed" x:Name="stack_sce">
+                    Margin="30" Grid.Row="3" Visibility="Collapsed" x:Name="stack_sce" Background="White">
                 <TextBlock Text="Liste des scéances" Margin="25" FontWeight="ExtraBlack" HorizontalAlignment="Center" Foreground="Black" FontSize="25"/>
                 <ListView x:Name="lv_liste" BorderBrush="Gray" BorderThickness="1">
                     <ListView.Header>

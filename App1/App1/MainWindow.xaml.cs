@@ -36,7 +36,8 @@ namespace App1
             Sceance.Visibility = Visibility.Collapsed;
             Stat.Visibility = Visibility.Collapsed;
             MesSceances.Visibility = Visibility.Collapsed;
-            compte.Visibility = Visibility.Collapsed;
+            deconnexion.Visibility = Visibility.Collapsed;
+
             MaNav.leNav = nav;
 
             mainFrame.Navigate(typeof(PageConnnexion));
@@ -44,7 +45,7 @@ namespace App1
         }
 
 
-        private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        private async void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             refresh();
             var item = (NavigationViewItem)args.SelectedItem;
@@ -73,9 +74,14 @@ namespace App1
                     mainFrame.Navigate(typeof(PageConnnexion));
                     break;
                 case "deconnexion":
-                    SessionUsager.TerminerSession();
-                    refresh();
-                    mainFrame.Navigate(typeof(PageConnnexion));
+                 
+                        SessionUsager.TerminerSession();
+                        refresh();
+                    compte.Content = "Compte";
+                        mainFrame.Navigate(typeof(PageConnnexion));
+             
+
+                  
                     break;
                 default:
                     break;
@@ -92,6 +98,9 @@ namespace App1
                 Stat.Visibility = Visibility.Visible;
                 Accueil.Visibility = Visibility.Collapsed;
                 connexion.Visibility = Visibility.Collapsed;
+                compte.Visibility = Visibility.Visible;
+                compte.Content = SessionUsager.NomAdmin;
+                deconnexion.Visibility = Visibility.Visible;
             }
             if (SessionUsager.AdherentConnecte == true)
             {
@@ -99,7 +108,8 @@ namespace App1
                 connexion.Visibility = Visibility.Collapsed;
                 compte.Visibility = Visibility.Visible;
                 compte.Content = SessionUsager.NomAdherent;
-                
+                deconnexion.Visibility = Visibility.Visible;
+
             }
             if (SessionUsager.AdherentConnecte == false && SessionUsager.AdminConnecte == false ) 
             {
@@ -108,8 +118,9 @@ namespace App1
                 Sceance.Visibility = Visibility.Collapsed;
                 Stat.Visibility = Visibility.Collapsed;
                 MesSceances.Visibility = Visibility.Collapsed;
-                compte.Visibility = Visibility.Collapsed;
                 connexion.Visibility = Visibility.Visible;
+                Accueil.Visibility= Visibility.Visible;
+                deconnexion.Visibility = Visibility.Collapsed;
             }
 
         }

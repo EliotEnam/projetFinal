@@ -711,5 +711,26 @@ namespace App1
             con.Close();
             return nbr;
         }
+        public string noteActivite(int lid)
+        {
+
+            int id = lid;
+
+            string nbr = "";
+
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = $"Select f_noteActivi(@lid)";
+            commande.Parameters.AddWithValue($"@lid", id);
+            con.Open();
+            commande.ExecuteScalar().ToString();
+            nbr = commande.ExecuteScalar().ToString();
+            con.Close();
+            return nbr;
+
+        }
+
+
     }
 }

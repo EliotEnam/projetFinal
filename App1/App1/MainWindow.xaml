@@ -22,9 +22,9 @@
 
             <Frame x:Name="mainFrame" />
             <NavigationView.FooterMenuItems>
-                <NavigationViewItem Content="Compte" Icon="Contact" x:Name="compte"/>
-                <NavigationViewItem Content="Se connecter" Tag="SamplePage5" Icon="Contact" x:Name="connexion"/>
-                <NavigationViewItem Content="Deconnexion" Tag="SamplePage5" Icon="DisconnectDrive" x:Name="deconnexion" />
+                <NavigationViewItem Content="Compte" Icon="Contact" x:Name="compte" Foreground="White"/>
+                <NavigationViewItem Content="Se connecter" Icon="Contact" x:Name="connexion" Foreground="White" Tag="connect"/>
+                <NavigationViewItem Content="Deconnexion" Tag="SamplePage5" Icon="DisconnectDrive" x:Name="deconnexion" Foreground="White"/>
             </NavigationView.FooterMenuItems>
         </NavigationView>
     </Grid>

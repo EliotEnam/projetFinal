@@ -10,7 +10,7 @@
     
     
 
-    <ScrollViewer Background="#212a31" >    
+    <ScrollViewer Background="#212a31" x:Name="scrol">    
             <Grid>
 
             <Grid.RowDefinitions>
@@ -27,7 +27,7 @@
 
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" x:Name="stack_activ">
                 <TextBlock Text="Liste des activités" HorizontalAlignment="Center" FontSize="25" Margin="0,25" FontWeight="Bold" Foreground="#d3d9d4"/>
-                <Button x:Name="ajoutActivite" Content="Ajpouter un adhérent" Click="ajoutActivite_Click" Grid.Row="1" HorizontalAlignment="Right" Margin="25,0"/>
+                <Button x:Name="ajoutActivite" Content="Ajouter une activité" Click="ajoutActivite_Click" Grid.Row="1" HorizontalAlignment="Right" Margin="25,0"/>
                 <ScrollViewer><GridView x:Name="lvListe" Grid.Row="1" Grid.ColumnSpan="5">
                     <GridView.ItemTemplate >
                         <DataTemplate x:DataType="local:Activite">
@@ -41,8 +41,8 @@
                                 Margin="15" HorizontalAlignment="Stretch">
                          
                                     <TextBlock Text="{x:Bind Nom, Mode=OneWay}" FontSize="20" FontWeight="Light" HorizontalAlignment="Center"  Foreground="#124e66"/>
-                                    <TextBlock Text="{x:Bind CoutOrgCli, Mode=OneWay}" FontSize="20" FontWeight="Light" Foreground="Black" HorizontalAlignment="Left"  x:Name="tbl_prix"/>
-                                    <TextBlock Text="{x:Bind CoutVentCli, Mode=OneWay}" FontSize="20" FontWeight="Light" Foreground="Black" HorizontalAlignment="Right"  FontStyle="Oblique" />
+                                    <TextBlock Text="{x:Bind CoutOrgCliString, Mode=OneWay}" FontSize="20" FontWeight="Light" Foreground="Black" HorizontalAlignment="Left"  x:Name="tbl_prix"/>
+                                    <TextBlock Text="{x:Bind CoutVentCliString, Mode=OneWay}" FontSize="20" FontWeight="Light" Foreground="Black" HorizontalAlignment="Left"  FontStyle="Oblique" />
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                             <Button Click="Button_Click" Margin="0,0,15,0">
                                                 <SymbolIcon Symbol="Edit" Foreground="CadetBlue" />
@@ -66,7 +66,7 @@
             </StackPanel>
 
             <StackPanel Orientation="Vertical" 
-        Margin="30" Grid.Row="3" Visibility="Collapsed" x:Name="stack_sce">
+        Margin="30" Grid.Row="3" Visibility="Collapsed" x:Name="stack_sce" Background="White">
                 <TextBlock Text="Liste des scéances" Margin="25" FontWeight="ExtraBlack" HorizontalAlignment="Center" Foreground="Black" FontSize="25"/>
                 <ListView x:Name="lv_liste" BorderBrush="Gray" BorderThickness="1">
                     <ListView.Header>
@@ -116,7 +116,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                    </ListView>
-                    <Button x:Name="btn_sce" Content="Liste des activités" Click="btn_sce_Click" />
+                    <Button x:Name="btn_sce" Content="Liste des activités" Click="btn_sce_Click" Margin="25"/>
             </StackPanel>
 
 

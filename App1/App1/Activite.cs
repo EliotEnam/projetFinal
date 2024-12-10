@@ -44,6 +44,17 @@ namespace App1
             get => coutOrgCli;
             set => coutOrgCli = value;
         }
+
+        public string CoutOrgCliString
+        {
+            get => $"Coût organiation : {CoutOrgCli} $";
+      
+        }
+        public string CoutVentCliString
+        {
+            get => $"Coût vente : {CoutVentCli} $";
+
+        }
         public double CoutVentCli
         {
             get => coutVentCli;
@@ -67,6 +78,12 @@ namespace App1
             get => SingletonListe.getInstance().statActiv("nomActivite", Nom, "f_nbr_adherent_activite");
         }
 
+        public string Note
+        {
+            
+            get => (SingletonListe.getInstance().noteActivite(idActivite).ToString() == "") ? "Pas encore noté" : SingletonListe.getInstance().noteActivite(idActivite).ToString();
+            
+    }
 
     }
 }
