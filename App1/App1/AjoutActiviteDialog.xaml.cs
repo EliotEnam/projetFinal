@@ -26,9 +26,9 @@ namespace App1
         public AjoutActiviteDialog()
         {
             this.InitializeComponent();
-            dateDebut.MaxYear = DateTime.Now;
+            dateDebut.MinYear = DateTime.Now;
             SingletonListe.getInstance().ListeCategorie(cbx_categorie);
-            dateDebut.MinYear = new DateTimeOffset(new DateTime(1950, 1, 1));
+         
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -66,33 +66,48 @@ namespace App1
             }
             if(co == true)
             { 
-                if (tbx_co.Text.Trim() == String.Empty)
+                if (tbx_co.Text.Trim() == String.Empty || Convert.ToInt32(tbx_co.Text.ToString()) < 1)
                 {
                     valide = false;
-                    erreur_co.Text = "Le coût d'organisation est obligatoire";
+                    erreur_co.Text = "Le coût d'organisation est obligatoire et\n > 0";
                 }
 
             }
             else
             {
-                erreur_co.Text = "Le coût d,organisation doit être en chiffre avec des (.) si nécéssaires";
+                erreur_co.Text = "Le coût d,organisation doit être en\n chiffre avec des (,) si nécéssaires";
                 valide = false;
 
             }
             if (cv == true)
             {
-                if (tbx_cv.Text.Trim() == String.Empty)
+                if (tbx_cv.Text.Trim() == String.Empty || Convert.ToInt32(tbx_cv.Text.ToString()) < 1)
                 {
                     valide = false;
-                    erreur_co.Text = "Le coût de vente est obligatoire";
+                    erreur_cv.Text = "Le coût de vente est obligatoire et > 0";
                 }
+              
 
             }
             else
             {
-                erreur_cv.Text = "Le coût de vente doit être en chiffre avec des (.) si nécéssaires";
+                erreur_cv.Text = "Le coût de vente doit être en\n chiffre avec des (,) si nécéssaires";
                 valide = false;
 
+            }
+            if(cv == true && co == true)
+            {
+                if(tbx_co.Text.Trim() != String.Empty || Convert.ToInt32(tbx_co.Text.ToString()) > 1)
+                {
+                    if(tbx_cv.Text.Trim() != String.Empty || Convert.ToInt32(tbx_cv.Text.ToString()) > 1)
+                    {
+                        if (Convert.ToInt32(tbx_cv.Text.ToString()) < Convert.ToInt32(tbx_co.Text.ToString()))
+                        {
+                            valide = false;
+                            erreur_cv.Text = "Le coût de vente ne peut pas être inférieur\nau coût d'organisation";
+                        }
+                    }
+                }
             }
 
             if (nbPLace == true)
@@ -112,12 +127,12 @@ namespace App1
             }
 
 
-            if (cbx_categorie.SelectedIndex < null)
+            if (cbx_categorie.SelectedIndex < 0)
             {
                 valide = false;
                 erreur_cat.Text = "L'adresse ne doit pas être vide";
             }
-            if (dateDebut == null)
+            if (dateDebut.SelectedDate == null)
             {
                 valide = false;
                 erreur_dateDebut.Text = "Veullez entrer la date de début des scéances";

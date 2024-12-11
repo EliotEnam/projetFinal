@@ -68,18 +68,24 @@ namespace App1
 
         private void TwoState_Checked(object sender, RoutedEventArgs e)
         {
+            tbl_error.Visibility = Visibility.Collapsed;
             stack_idAdherent.Visibility = Visibility.Collapsed;
             stack_nom.Visibility = Visibility.Visible;
             stack_password.Visibility = Visibility.Visible;
             tbl_texte.Text = "Entrez vos identifiants";
+            tbx_id_adherent.Text = string.Empty;
         }
 
         private void TwoState_Unchecked(object sender, RoutedEventArgs e)
         {
+            tbl_error.Visibility = Visibility.Collapsed;
             stack_idAdherent.Visibility = Visibility.Visible;
             stack_nom.Visibility = Visibility.Collapsed;
             stack_password.Visibility = Visibility.Collapsed;
             tbl_texte.Text = "Entrez votre identifiant";
+            tbx_nom.Text = string.Empty;
+            tbx_pass.Password = string.Empty;
+
         }
 
         private void btn_connexion_Click(object sender, RoutedEventArgs e)

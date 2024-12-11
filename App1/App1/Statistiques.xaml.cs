@@ -29,6 +29,11 @@ namespace App1
             this.InitializeComponent();
             SingletonListe.getInstance().afficherActivites();
             lv_liste.ItemsSource = SingletonListe.getInstance().Liste;
+            tbl_benefice_moyen.Text = $"Le bénéfice moyen par activité est de {SingletonListe.getInstance().vues("benefice_moyen")}$" ;
+            tbl_prix_moyen.Text = $"Le prix moyen par activité est de {SingletonListe.getInstance().vues("prix_moyen")}$";
+            tbl_note_moyenne_toute_activ.Text = $"La note moyenne d'une activité est de {SingletonListe.getInstance().vues("moyenne_note_appreciation_activite")}";
+            tbl_nbr_activ.Text = $"{SingletonListe.getInstance().vues("nbr_activ")} activités";
+            tbl_nbr_adherent.Text = $"{SingletonListe.getInstance().vues("nbr_adher")} adhérents";
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)

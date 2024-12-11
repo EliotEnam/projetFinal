@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.UI;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -9,6 +10,7 @@ using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -65,13 +67,27 @@ namespace App1
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
             Activite activite = btn.DataContext as Activite;
             lvListe.SelectedItem = activite;
-            SingletonListe.getInstance().supprimer(activite.IdActivite.ToString(),"supprimerActivite");
-            SingletonListe.getInstance().afficherActivites();
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "Mon titre";
+            dialog.PrimaryButtonText = "Oui";
+            dialog.SecondaryButtonText = "Non";
+            dialog.DefaultButton = ContentDialogButton.Secondary;
+            dialog.Content = $"Êtes-vous sûr de vouloir l'activite {activite.Nom}\n et sa/ses {activite.NbSceance} sceance(s) ?";
+
+            ContentDialogResult result = await dialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                SingletonListe.getInstance().supprimer(activite.IdActivite.ToString(), "supprimerActivite");
+                SingletonListe.getInstance().afficherActivites();
+            }
+               
         }
 
    
@@ -82,6 +98,7 @@ namespace App1
             stack_sce.Visibility = Visibility.Collapsed;
             SingletonListe.getInstance().afficherActivites();
             lvListe.ItemsSource = SingletonListe.getInstance().Liste;
+
         }
 
         private async void btn_modifier_Click(object sender, RoutedEventArgs e)
@@ -134,6 +151,7 @@ namespace App1
             lv_liste.ItemsSource = SingletonListe.getInstance().afficherSeancesParActiv(activite.IdActivite);
             stack_activ.Visibility = Visibility.Collapsed;
             stack_sce.Visibility = Visibility.Visible;
+  
         }
     }
 }

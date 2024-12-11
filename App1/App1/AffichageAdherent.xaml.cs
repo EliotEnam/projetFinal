@@ -51,12 +51,24 @@ namespace App1
             lv_liste.ItemsSource = SingletonListe.getInstance().afficherAdherents();
         }
 
-        private void btn_supprimer_Click(object sender, RoutedEventArgs e)
+        private async void btn_supprimer_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
             Adherent adherent = btn.DataContext as Adherent;
             lv_liste.SelectedItem = adherent;
-            SingletonListe.getInstance().supprimer(adherent.Id.ToString(), "supprimerAdherent");
+
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "Mon titre";
+            dialog.PrimaryButtonText = "Oui";
+            dialog.SecondaryButtonText = "Non";
+            dialog.DefaultButton = ContentDialogButton.Secondary;
+            dialog.Content = $"Êtes-vous sûr de vouloir suprimer l'adhérent {adherent.Nom} {adherent.Prenom}?";
+
+            ContentDialogResult result = await dialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+                SingletonListe.getInstance().supprimer(adherent.Id.ToString(), "supprimerAdherent");
             lv_liste.ItemsSource = (SingletonListe.getInstance().afficherAdherents());
         }
 

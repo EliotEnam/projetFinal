@@ -60,10 +60,15 @@ namespace App1
             resetErreurs();
             if (nb == true)
             {
-                if (tbx_nb.Text.Trim() == String.Empty)
+                if (tbx_nb.Text.Trim() == String.Empty )
                 {
                     valide = false;
                     erreur_nb.Text = "Ce champ est obligatoire";
+                }
+                if(Convert.ToInt32(tbx_nb.Text) < 0)
+                {
+                    valide = false;
+                    erreur_nb.Text = "Le nombre de place ne peut pas être négatif";
                 }
 
             }

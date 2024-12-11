@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security.Cryptography;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -51,13 +52,26 @@ namespace App1
             lv_liste.ItemsSource = SingletonListe.getInstance().afficherSceances();
         }
 
-        private void btn_supprimer_Click(object sender, RoutedEventArgs e)
+        private async void btn_supprimer_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
             Sceance sceance = btn.DataContext as Sceance;
             lv_liste.SelectedItem = sceance;
-            SingletonListe.getInstance().supprimer(sceance.IdSce.ToString(), "supprimerSceance");
-            lv_liste.ItemsSource = (SingletonListe.getInstance().afficherSceances());
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Title = "Mon titre";
+            dialog.PrimaryButtonText = "Oui";
+            dialog.SecondaryButtonText = "Non";
+            dialog.DefaultButton = ContentDialogButton.Secondary;
+            dialog.Content = $"Êtes-vous sûr de vouloir suprimer la scéance du {sceance.Date} de l'activité {SingletonListe.getInstance().getNomActivite(sceance.IdAct)} ?";
+
+            ContentDialogResult result = await dialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                SingletonListe.getInstance().supprimer(sceance.IdSce.ToString(), "supprimerSceance");
+                lv_liste.ItemsSource = (SingletonListe.getInstance().afficherSceances());
+            }
         }
     }
 }

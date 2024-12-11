@@ -30,14 +30,14 @@ namespace App1
         {
             this.InitializeComponent();
             tbl_texte.Text = "Une scéance est notée sur cinq. ";
-            tbl_slider_value.Text = "Ma note:" + Math.Round(Convert.ToDouble(slider.Value), 2).ToString();
+            tbl_slider_value.Text = "Ma note:  " + Math.Round(Convert.ToDouble(slider.Value), 2).ToString();
             idSceance = idSce;
         
         }
 
         private void Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            tbl_slider_value.Text = "Ma note:" + Math.Round(Convert.ToDouble(slider.Value),2).ToString();
+            tbl_slider_value.Text = "Ma note:  " + Math.Round(Convert.ToDouble(slider.Value),2).ToString();
         }
 
         private void ContentDialog_CloseButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -52,12 +52,7 @@ namespace App1
 
         private void ContentDialog_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
         {
-            if (args.Result == ContentDialogResult.Primary)
-            {
-                    args.Cancel = true;
-            }
-            else
-                args.Cancel = false;
+            
 
         }
     }

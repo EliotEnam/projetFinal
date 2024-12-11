@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Controls;
+using static Mysqlx.Expect.Open.Types.Condition.Types;
 
 namespace App1
 {
@@ -726,6 +727,32 @@ namespace App1
             con.Open();
             commande.ExecuteScalar().ToString();
             nbr = commande.ExecuteScalar().ToString();
+            con.Close();
+            return nbr;
+
+        }
+
+        public string vues(string lvue)
+        {
+
+            string vue = lvue;
+
+            string nbr = "";
+
+            MySqlCommand commande = new MySqlCommand();
+            commande.Connection = con;
+            commande.CommandText = $"Select * from {vue}";
+            con.Open();
+            commande.Prepare();
+            MySqlDataReader r = commande.ExecuteReader();
+
+            while (r.Read())
+            {
+                nbr = r[0].ToString();
+
+            }
+
+            r.Close();
             con.Close();
             return nbr;
 

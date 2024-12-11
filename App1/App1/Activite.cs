@@ -55,6 +55,12 @@ namespace App1
             get => $"Coût vente : {CoutVentCli} $";
 
         }
+
+        public string CoutVentAdhe
+        {
+            get => $"Coût : {CoutVentCli} $";
+
+        }
         public double CoutVentCli
         {
             get => coutVentCli;
@@ -78,6 +84,10 @@ namespace App1
             get => SingletonListe.getInstance().statActiv("nomActivite", Nom, "f_nbr_adherent_activite");
         }
 
+        public string NomCategorie
+        {
+            get => SingletonListe.getInstance().getNomCategorie(IdCategorie);
+        }
         public string Note
         {
             

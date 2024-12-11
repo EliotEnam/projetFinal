@@ -13,7 +13,7 @@
 
         <StackPanel Orientation="Vertical" 
                     Margin="30" Grid.Row="3" x:Name="stack_sce">
-            <TextBlock Text="Mes scéances" Margin="25" FontWeight="ExtraBlack" HorizontalAlignment="Center" Foreground="Black" FontSize="25"/>
+            <TextBlock Text="Mes scéances" Margin="25" FontWeight="ExtraBlack" HorizontalAlignment="Center" Foreground="White" FontSize="25"/>
             <ListView x:Name="lv_liste" BorderBrush="Gray" BorderThickness="1">
                 <ListView.Header>
                     <Grid Background="LightGray" BorderBrush="Black" BorderThickness="1">

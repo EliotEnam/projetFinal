@@ -9,24 +9,24 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" Padding="20" BorderBrush="LightGray" BorderThickness="1" Background="#d3d9d4">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" Padding="20" BorderBrush="DarkGray" BorderThickness="1" Background="Black">
         <TextBlock Text="Connexion" FontSize="30" FontWeight="Bold" Foreground="#004AAD" Margin="0,0,0,20" TextAlignment="Center" />
 
         <TextBlock Visibility="Collapsed" x:Name="tbl_error" Margin="10" FontSize="20" Foreground="Red"/>
-        <TextBlock Text="Entrez votre identifiant" Margin="0,0,0,10" FontSize="18" Foreground="#2e3944" x:Name="tbl_texte"/>
+        <TextBlock Text="Entrez votre identifiant" Margin="0,0,0,10" FontSize="18" Foreground="#d3d9d4" x:Name="tbl_texte"/>
         <StackPanel Orientation="Vertical" Padding="0" x:Name="stack_idAdherent">
-            <TextBox x:Name="tbx_id_adherent" Header="Identifiant" PlaceholderText="Entrez votre identifiant" Margin="0,0,0,5"/>
+            <TextBox x:Name="tbx_id_adherent" Header="Identifiant" PlaceholderText="Entrez votre identifiant" Margin="0,0,0,5" />
             <TextBlock x:Name="erreur_id" Foreground="Red" FontSize="14" />
         </StackPanel>
 
 
         <StackPanel Orientation="Vertical" Padding="0" x:Name="stack_nom" Visibility="Collapsed">
-            <TextBox x:Name="tbx_nom" Header="Nom" PlaceholderText="Entrez votre nom" Margin="0,0,0,5"/>
+            <TextBox x:Name="tbx_nom" Header="Nom" PlaceholderText="Entrez votre nom" Margin="0,0,0,5" />
             <TextBlock x:Name="erreur_nom" Foreground="Red" FontSize="14"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical" Padding="0" x:Name="stack_password" Visibility="Collapsed">
-            <PasswordBox x:Name="tbx_pass" Header="Mot de passe" PlaceholderText="Entrez votre mot de passe" Margin="0,0,0,5" Foreground="Wheat"/>
+            <PasswordBox x:Name="tbx_pass" Header="Mot de passe" PlaceholderText="Entrez votre mot de passe" Margin="0,0,0,5" />
             <TextBlock x:Name="erreur_pass" Foreground="Red" FontSize="14" />
         </StackPanel>
 

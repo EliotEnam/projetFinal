@@ -56,7 +56,7 @@ namespace App1
 
                 Noter dialog = new Noter(sceance.IdSce);
                 dialog.XamlRoot = this.XamlRoot;
-                dialog.PrimaryButtonText = "Modifier";
+                dialog.PrimaryButtonText = "Noter";
                 dialog.CloseButtonText = "Annuler";
                 dialog.DefaultButton = ContentDialogButton.Close;
                 ContentDialogResult resultat = await dialog.ShowAsync();

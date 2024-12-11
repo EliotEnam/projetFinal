@@ -12,7 +12,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel Orientation="Vertical">
-        <TextBlock Text="" Margin="10" FontStyle="Oblique" FontSize="10" Foreground="DarkCyan" x:Name="tbl_texte"/>
+        <TextBlock Text="" Margin="10" FontStyle="Oblique" FontSize="20" Foreground="DarkCyan" x:Name="tbl_texte"/>
         <TextBlock x:Name="tbl_slider_value" Text="Valeur" HorizontalAlignment="Center"/>
         <Slider Width="200" Minimum="0" Maximum="5" StepFrequency="0.1" Value="3" ValueChanged="Slider_ValueChanged" x:Name="slider"/>
     </StackPanel>
